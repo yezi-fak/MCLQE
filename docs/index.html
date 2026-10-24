@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCLQE — Minecraft Java 版启动器</title>
+<meta name="description" content="MCLQE 是一款基于 Java 21 + JavaFX 的开源 Minecraft Java 版启动器，支持多版本管理、Modrinth 模组一键安装、Fabric/Quilt/Forge/NeoForge 加载器安装、微软正版登录。">
+<meta property="og:title" content="MCLQE — Minecraft Java 版启动器">
+<meta property="og:description" content="开源、轻量、深色界面的 Minecraft 启动器">
+<meta property="og:image" content="screenshots/mclqe-home.png">
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+:root{
+  --bg:#0b0e14;
+  --bg-2:#101020;
+  --panel:rgba(255,255,255,.04);
+  --line:rgba(255,255,255,.09);
+  --text:#f0f0f0;
+  --muted:#9aa4b2;
+  --green:#30d090;
+  --cyan:#50e0d0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+/* 背景光晕 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(620px 420px at 12% 8%, rgba(48,208,144,.16), transparent 65%),
+    radial-gradient(560px 400px at 88% 4%, rgba(80,224,208,.12), transparent 65%),
+    radial-gradient(800px 600px at 50% 100%, rgba(48,208,144,.07), transparent 70%);
+}
+/* 导航 */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.5px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14.5px;color:var(--muted)}
+.nav ul a:hover{color:var(--green)}
+.nav .gh{border:1px solid var(--line);padding:7px 14px;border-radius:9px;font-size:14px;color:var(--text);transition:.2s}
+.nav .gh:hover{border-color:var(--green);color:var(--green)}
+/* 首屏 */
+.hero{padding:92px 0 72px;text-align:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--green);
+  border:1px solid rgba(48,208,144,.34);background:rgba(48,208,144,.08);
+  padding:5px 13px;border-radius:999px;margin-bottom:26px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.hero img.logo{width:104px;height:104px;border-radius:24px;margin-bottom:26px;
+  box-shadow:0 18px 50px rgba(48,208,144,.24)}
+h1{font-size:60px;line-height:1.05;letter-spacing:-2px;font-weight:800;
+  background:linear-gradient(120deg,#fff 20%,var(--green) 60%,var(--cyan) 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;margin:18px auto 0;max-width:620px}
+.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:15.5px;transition:.22s}
+.btn-main{background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;
+  box-shadow:0 12px 32px rgba(48,208,144,.28)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(48,208,144,.38)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.meta{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px;font-size:13.5px;color:var(--muted)}
+.meta b{color:var(--text);font-weight:600}
+/* 通用段落 */
+section{padding:74px 0}
+.eyebrow{color:var(--green);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:34px;letter-spacing:-.8px;margin-bottom:14px}
+.lead{color:var(--muted);max-width:640px}
+/* 功能卡 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 22px;transition:.25s}
+.card:hover{border-color:rgba(48,208,144,.45);transform:translateY(-3px);background:rgba(48,208,144,.05)}
+.card .ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(48,208,144,.13);color:var(--green);font-size:18px;margin-bottom:16px}
+.card h3{font-size:16.5px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px}
+/* 截图 */
+.shot{border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:38px;
+  box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.shot img{width:100%;display:block}
+/* 下载 */
+.dl{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;margin-top:38px}
+.dl-row{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+  padding:16px 0;border-bottom:1px solid var(--line)}
+.dl-row:last-child{border-bottom:0}
+.dl-row .k{color:var(--muted);font-size:14px;min-width:120px}
+.dl-row .v{font-size:14.5px;word-break:break-all;text-align:right;flex:1}
+code{font-family:"Cascadia Code",Consolas,monospace;font-size:12.8px;color:var(--cyan);
+  background:rgba(80,224,208,.08);padding:3px 8px;border-radius:6px}
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:13.5px}
+footer .fnav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+footer .fnav a:hover{color:var(--green)}
+.disc{max-width:760px;font-size:12.8px;line-height:1.8;color:#6f7987}
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr 1fr}
+  h1{font-size:42px}
+  .nav ul{display:none}
+  .hero{padding:64px 0 48px}
+}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  h1{font-size:34px}
+  section{padding:52px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="favicon.png" alt="MCLQE">MCLQE</div>
+    <ul>
+      <li><a href="#features">功能</a></li>
+      <li><a href="#preview">预览</a></li>
+      <li><a href="#download">下载</a></li>
+    </ul>
+    <a class="gh" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="tag"><span class="dot"></span>开源免费 · GPL-3.0</div>
+    <img class="logo" src="favicon.png" alt="MCLQE 图标">
+    <h1>MCLQE</h1>
+    <p class="sub">基于 Java 21 + JavaFX 的 Minecraft Java 版启动器。多版本管理、模组与加载器一键安装、微软正版登录，深色界面开箱即用。</p>
+    <div class="actions">
+      <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">
+        ↓ 下载 Windows 版
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">查看源码</a>
+    </div>
+    <div class="meta">
+      <span>最新版本 <b id="ver">v1.0.0</b></span>
+      <span>下载量 <b id="dlcount">—</b></span>
+      <span>Star <b id="stars">—</b></span>
+      <span>Windows 10/11 x64 · <b>免安装 Java</b></span>
+    </div>
+  </section>
+
+  <section id="features" class="wrap">
+    <div class="eyebrow">Features</div>
+    <h2>该有的都有，不该有的没有</h2>
+    <p class="lead">只做启动器该做的事：把版本、模组、加载器和账号管好，界面保持干净。</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">▣</div>
+        <h3>多实例与版本管理</h3>
+        <p>独立游戏目录、多版本并存，切换版本不改动已有存档与配置。</p>
+      </div>
+      <div class="card">
+        <div class="ico">↓</div>
+        <h3>Modrinth 模组直装</h3>
+        <p>内置搜索与依赖解析，选中即装，支持镜像源，无需手动搬运 jar。</p>
+      </div>
+      <div class="card">
+        <div class="ico">⚙</div>
+        <h3>加载器一键部署</h3>
+        <p>Fabric、Quilt、Forge、NeoForge 版本列表实时拉取，按所选游戏版本自动匹配安装。</p>
+      </div>
+      <div class="card">
+        <div class="ico">◎</div>
+        <h3>微软正版登录</h3>
+        <p>走标准 OAuth 设备码流程，同时支持离线模式，账号数据本地保存。</p>
+      </div>
+      <div class="card">
+        <div class="ico">☕</div>
+        <h3>Java 自动识别</h3>
+        <p>按游戏版本判断所需 Java 版本，缺失时直接引导下载适配的运行时。</p>
+      </div>
+      <div class="card">
+        <div class="ico">◐</div>
+        <h3>深色原生界面</h3>
+        <p>JavaFX 原生绘制，无内嵌浏览器内核，启动快、内存占用低。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preview" class="wrap">
+    <div class="eyebrow">Preview</div>
+    <h2>界面预览</h2>
+    <p class="lead">全部功能在同一套深色主题下展开，左边的实例列表到了右边就是可操作的版本卡片。</p>
+    <div class="shot"><img src="screenshots/mclqe-home.png" alt="MCLQE 主界面截图" loading="lazy"></div>
+  </section>
+
+  <section id="download" class="wrap">
+    <div class="eyebrow">Download</div>
+    <h2>下载</h2>
+    <p class="lead">Windows 10/11 64 位，解压即用，内置运行时，不需要另行安装 Java。</p>
+    <div class="actions" style="justify-content:flex-start;margin-top:28px">
+      <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">↓ MCLQE-launcher-windows-x64.zip</a>
+    </div>
+    <div class="dl">
+      <div class="dl-row"><span class="k">最新版本</span><span class="v" id="ver2">v1.0.0</span></div>
+      <div class="dl-row"><span class="k">文件大小</span><span class="v">61.6 MB</span></div>
+      <div class="dl-row"><span class="k">系统要求</span><span class="v">Windows 10 / 11 · 64 位 · 免装 Java</span></div>
+      <div class="dl-row"><span class="k">校验 SHA256</span><span class="v"><code>1969c0b2b18ef902483e7cd136378c2767cbece8aa5c9cb2d2535a2404f20955</code></span></div>
+      <div class="dl-row"><span class="k">许可证</span><span class="v">GPL-3.0 · 源码开放</span></div>
+      <div class="dl-row"><span class="k">历史版本</span><span class="v"><a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">全部 Release ↗</a></span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnav">
+      <a href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">问题反馈</a>
+      <a href="https://github.com/yezi-fak/MCLQE/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a>
+    </div>
+    <p class="disc">MCLQE 为非官方开源项目，与 Mojang Studios、Microsoft 及网易均无任何关联，不包含任何游戏本体文件，启动时需你自行拥有正版账号或使用离线模式。Minecraft 是 Mojang Studios 的商标。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var REPO="yezi-fak/MCLQE";
+  fetch("https://api.github.com/repos/"+REPO+"/releases/latest")
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(d){
+      if(!d) return;
+      if(d.tag_name){
+        document.getElementById("ver").textContent=d.tag_name;
+        document.getElementById("ver2").textContent=d.tag_name;
+      }
+      var n=0;
+      (d.assets||[]).forEach(function(a){n+=a.download_count||0});
+      document.getElementById("dlcount").textContent=n;
+    }).catch(function(){});
+  fetch("https://api.github.com/repos/"+REPO)
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(d){
+      if(!d) return;
+      var dl=document.getElementById("dlcount");
+      if(dl.textContent==="—"){
+        var total=(d.download_count||0);
+        dl.textContent=total;
+      }
+      document.getElementById("stars").textContent=d.stargazers_count||0;
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>
