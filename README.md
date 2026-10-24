@@ -205,4 +205,13 @@ LauncherApp（UI 线程）
 
 ## 十一、许可证
 
-本项目源代码采用 MIT License，详见 `LICENSE` 文件（若仓库暂未包含该文件，以发布说明为准）。第三方依赖与运行时仍遵循其各自的许可证。
+本项目源代码采用 GNU General Public License v3.0（GPL-3.0），全文见仓库根目录的 [`LICENSE`](LICENSE) 文件。
+
+- Copyright (C) 2026 yezi-fak
+- 你可以自由使用、修改、分发本项目；分发衍生作品时必须同样以 GPL-3.0 开源，并提供完整对应源码。
+- 本项目不提供任何担保，详见 GPL-3.0 第 15、16 条。
+- 选择 GPL-3.0 的原因：本项目在功能设计与技术方案上参考了同以 GPL-3.0 发布的 HMCL、PCL2、Prism Launcher 等开源启动器（见第九节），采用相同协议可保证生态兼容、避免许可证冲突；仓库中不包含上述项目的任何源代码。
+
+第三方依赖与运行时遵循各自的许可证：JavaFX（GPL-2.0 with Classpath Exception）、Gson（Apache-2.0）、Maven Wrapper（Apache-2.0）、OpenJDK Runtime（GPL-2.0 with Classpath Exception），均与 GPL-3.0 兼容。
+
+如需在非 GPL 条款下使用本项目代码，请通过仓库 Issue 联系作者获取单独授权。

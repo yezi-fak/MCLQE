@@ -12,6 +12,14 @@
     <name>MCLQE Launcher</name>
     <description>基于 Java 21 + JavaFX 的 Minecraft 启动器（版本清单解析 / 多线程下载校验 / Java 检测 / 参数拼接 / 离线登录 / JavaFX 界面 / 配置持久化）</description>
 
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
