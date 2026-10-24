@@ -1,0 +1,46 @@
+# ---- 本地游戏数据目录（默认游戏目录，不入库）----
+/MCLQE/
+
+# ---- 鏋勫缓杈撳嚭 ----
+target/
+build/
+out/
+.gradle/
+*.class
+
+# ---- 鍙戝竷浜х墿锛坉ist 鍚?158MB runtime锛屼笉鍏ュ簱锛?---
+dist/
+dist_backup_*/
+dist_new2/
+*.exe
+*.msi
+*.zip
+*.lnk
+
+# ---- 鏈湴鏋勫缓鏃ュ織 / 涓存椂鏂囦欢 ----
+*.log
+*.rsp
+cp.txt
+*.err
+
+# ---- 鏈湴璇佷功涓庤处鍙锋暟鎹紙涓ョ鎻愪氦锛?---
+certs/
+SA/
+*.crt
+*.pfx
+*.p12
+offline.json
+accounts*.json
+config.json
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ---- 绯荤粺 ----
+Thumbs.db
+desktop.ini
+.DS_Store

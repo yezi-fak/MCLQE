@@ -1,0 +1,1704 @@
+/* =============================================================================
+   MCLQE Launcher — 界面样式表
+   设计语言：Material You / Monet 主题体系（参照 HMCL 官方 blue.css 与 root.css）
+   - 颜色一律通过 -monet-* 变量引用，组件规则中不出现任何硬编码颜色
+   - 浅色为默认，深色通过根节点追加 .dark 样式类切换（变量整组覆盖）
+   - 启动分裂按钮合计 230 x 57（主按钮 203 + 下拉 27），符合 HMCL 规范
+   ============================================================================= */
+
+/* ---------------------------------------------------------------- 浅色主题 */
+.root {
+    -fx-font-family: "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", "PingFang SC", sans-serif;
+    -fx-font-size: 13px;
+
+    /* 主色（seed #4352A5） */
+    -monet-primary: #4352A5;
+    -monet-on-primary: #FFFFFF;
+    -monet-primary-container: #DEE0FF;
+    -monet-on-primary-container: #000C60;
+    -monet-primary-fixed: #DEE0FF;
+    -monet-primary-fixed-dim: #BAC3FF;
+    -monet-on-primary-fixed: #000C60;
+    -monet-on-primary-fixed-variant: #2A3A85;
+    -monet-primary-seed: #4352A5;
+    -monet-primary-transparent-50: #4352A580;
+    -monet-primary-transparent-80: #4352A5CC;
+
+    /* 次级色 */
+    -monet-secondary: #5A5D72;
+    -monet-on-secondary: #FFFFFF;
+    -monet-secondary-container: #DFE1F9;
+    -monet-on-secondary-container: #171B2C;
+    -monet-secondary-fixed: #DFE1F9;
+    -monet-secondary-fixed-dim: #C3C5DD;
+    -monet-on-secondary-fixed: #171B2C;
+    -monet-on-secondary-fixed-variant: #424659;
+    -monet-secondary-container-transparent-50: #DFE1F980;
+    -monet-secondary-container-transparent-80: #DFE1F9CC;
+
+    /* 第三色 */
+    -monet-tertiary: #77536D;
+    -monet-on-tertiary: #FFFFFF;
+    -monet-tertiary-container: #FFD7F1;
+    -monet-on-tertiary-container: #2D1228;
+    -monet-tertiary-fixed: #FFD7F1;
+    -monet-tertiary-fixed-dim: #E6BAD9;
+    -monet-on-tertiary-fixed: #2D1228;
+    -monet-on-tertiary-fixed-variant: #5D3C54;
+
+    /* 错误色 */
+    -monet-error: #BA1A1A;
+    -monet-on-error: #FFFFFF;
+    -monet-error-container: #FFDAD6;
+    -monet-on-error-container: #410002;
+
+    /* 表面色 */
+    -monet-surface: #FBF8FF;
+    -monet-on-surface: #1B1B21;
+    -monet-surface-dim: #DAD9E0;
+    -monet-surface-bright: #FBF8FF;
+    -monet-surface-container-lowest: #FFFFFF;
+    -monet-surface-container-low: #F5F2FA;
+    -monet-surface-container: #EFEDF4;
+    -monet-surface-container-high: #E9E7EF;
+    -monet-surface-container-highest: #E3E1E9;
+    -monet-surface-variant: #E2E1EC;
+    -monet-on-surface-variant: #45464F;
+    -monet-background: #FBF8FF;
+    -monet-on-background: #1B1B21;
+    -monet-surface-tint: #4352A5;
+    -monet-surface-transparent-50: #FBF8FF80;
+    -monet-surface-transparent-80: #FBF8FFCC;
+    -monet-surface-container-low-transparent-80: #F5F2FACC;
+    -monet-on-surface-variant-transparent-38: #45464F61;
+
+    /* 外框与反色 */
+    -monet-outline: #767680;
+    -monet-outline-variant: #C6C5D0;
+    -monet-shadow: #000000;
+    -monet-scrim: #000000;
+    -monet-inverse-surface: #303036;
+    -monet-inverse-on-surface: #F3EFF7;
+    -monet-inverse-primary: #BAC3FF;
+    -monet-inverse-surface-transparent-80: #303036CC;
+
+    /* 阴影基色（HMCL 深度规范：浅色 26% 黑） */
+    -monet-depth-color: rgba(0, 0, 0, 0.26);
+}
+
+/* ---------------------------------------------------------------- 深色主题 */
+.root.dark {
+    -monet-primary: #BAC3FF;
+    -monet-on-primary: #1B2A6B;
+    -monet-primary-container: #2A3A85;
+    -monet-on-primary-container: #DEE0FF;
+    -monet-primary-fixed: #DEE0FF;
+    -monet-primary-fixed-dim: #BAC3FF;
+    -monet-on-primary-fixed: #000C60;
+    -monet-on-primary-fixed-variant: #2A3A85;
+    -monet-primary-transparent-50: #BAC3FF80;
+    -monet-primary-transparent-80: #BAC3FFCC;
+
+    -monet-secondary: #C3C5DD;
+    -monet-on-secondary: #2C2F42;
+    -monet-secondary-container: #424659;
+    -monet-on-secondary-container: #DFE1F9;
+    -monet-secondary-fixed: #DFE1F9;
+    -monet-secondary-fixed-dim: #C3C5DD;
+    -monet-on-secondary-fixed: #171B2C;
+    -monet-on-secondary-fixed-variant: #424659;
+    -monet-secondary-container-transparent-50: #42465980;
+    -monet-secondary-container-transparent-80: #424659CC;
+
+    -monet-tertiary: #E6BAD9;
+    -monet-on-tertiary: #45263D;
+    -monet-tertiary-container: #5D3C54;
+    -monet-on-tertiary-container: #FFD7F1;
+    -monet-tertiary-fixed: #FFD7F1;
+    -monet-tertiary-fixed-dim: #E6BAD9;
+    -monet-on-tertiary-fixed: #2D1228;
+    -monet-on-tertiary-fixed-variant: #5D3C54;
+
+    -monet-error: #FFB4AB;
+    -monet-on-error: #690005;
+    -monet-error-container: #93000A;
+    -monet-on-error-container: #FFDAD6;
+
+    -monet-surface: #131318;
+    -monet-on-surface: #E4E1E9;
+    -monet-surface-dim: #131318;
+    -monet-surface-bright: #39383F;
+    -monet-surface-container-lowest: #0E0E13;
+    -monet-surface-container-low: #1B1B21;
+    -monet-surface-container: #1F1F25;
+    -monet-surface-container-high: #2A2A30;
+    -monet-surface-container-highest: #35343B;
+    -monet-surface-variant: #45464F;
+    -monet-on-surface-variant: #C6C5D0;
+    -monet-background: #131318;
+    -monet-on-background: #E4E1E9;
+    -monet-surface-tint: #BAC3FF;
+    -monet-surface-transparent-50: #13131880;
+    -monet-surface-transparent-80: #131318CC;
+    -monet-surface-container-low-transparent-80: #1B1B21CC;
+    -monet-on-surface-variant-transparent-38: #C6C5D061;
+
+    -monet-outline: #90909A;
+    -monet-outline-variant: #45464F;
+    -monet-shadow: #000000;
+    -monet-scrim: #000000;
+    -monet-inverse-surface: #E4E1E9;
+    -monet-inverse-on-surface: #303036;
+    -monet-inverse-primary: #4352A5;
+    -monet-inverse-surface-transparent-80: #E4E1E9CC;
+
+    -monet-depth-color: rgba(0, 0, 0, 0.66);
+}
+
+/* =============================================================================
+   窗口骨架
+   ============================================================================= */
+.window-root {
+    -fx-background-color: -monet-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 18, 0.16, 0, 6);
+}
+
+/* ---------------------------------------------------------------- 自绘顶栏 */
+.title-bar {
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+    -fx-padding: 0 0 0 14;
+    -fx-spacing: 10;
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 8 8 0 0;
+    -fx-cursor: default;
+}
+
+.app-logo {
+    -fx-min-width: 16;
+    -fx-min-height: 16;
+    -fx-max-width: 16;
+    -fx-max-height: 16;
+    -fx-background-color: -monet-primary;
+    -fx-background-radius: 4;
+}
+
+.title-bar-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.window-button {
+    -fx-min-width: 44;
+    -fx-max-width: 44;
+    -fx-min-height: 40;
+    -fx-max-height: 40;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.window-button .icon {
+    -fx-background-color: -monet-on-surface-variant;
+}
+
+.window-button:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.window-close:hover {
+    -fx-background-color: -monet-error-container;
+}
+
+.window-close:hover .icon {
+    -fx-background-color: -monet-on-error-container;
+}
+
+/* ---------------------------------------------------------------- 侧边导航 */
+.nav-drawer {
+    -fx-min-width: 196;
+    -fx-pref-width: 196;
+    -fx-max-width: 196;
+    -fx-padding: 10 8 8 8;
+    -fx-spacing: 2;
+    -fx-background-color: -monet-surface-container-low;
+}
+
+.nav-item {
+    -fx-padding: 10 12 10 12;
+    -fx-spacing: 12;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.nav-item > .label {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 14px;
+}
+
+.nav-item .icon {
+    -fx-background-color: -monet-on-surface-variant;
+}
+
+.nav-item:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.nav-item.selected {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+}
+
+.nav-item.selected > .label {
+    -fx-text-fill: -monet-on-secondary-container;
+    -fx-font-weight: bold;
+}
+
+.nav-item.selected .icon {
+    -fx-background-color: -monet-on-secondary-container;
+}
+
+.nav-footer {
+    -fx-padding: 4;
+}
+
+.nav-footer-label {
+    -fx-text-fill: -monet-on-surface-variant-transparent-38;
+    -fx-font-size: 11px;
+    -fx-padding: 6 12 6 12;
+}
+
+/* ---------------------------------------------------------------- 内容区与页面 */
+.content-area {
+    -fx-background-color: -monet-surface;
+}
+
+.page {
+    -fx-padding: 18 20 14 20;
+    -fx-spacing: 4;
+}
+
+.page-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.page-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.page-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+/* ---------------------------------------------------------------- 卡片 */
+.card {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 6;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 8, 0.10, -1, 2);
+}
+
+.card-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-subtitle {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.clickable {
+    -fx-cursor: hand;
+}
+
+.version-card {
+    -fx-padding: 14;
+}
+
+.version-card:hover {
+    -fx-background-color: -monet-surface-container;
+}
+
+.version-avatar {
+    -fx-min-width: 46;
+    -fx-min-height: 46;
+    -fx-max-width: 46;
+    -fx-max-height: 46;
+    -fx-background-color: -monet-primary-container;
+    -fx-background-radius: 6;
+}
+
+.version-avatar-text {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.two-line-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 14px;
+}
+
+.two-line-subtitle {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.tag {
+    -fx-background-color: -monet-secondary-container;
+    -fx-text-fill: -monet-on-secondary-container;
+    -fx-background-radius: 3;
+    -fx-padding: 1 6 1 6;
+    -fx-font-size: 11px;
+}
+
+.hint {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+.hint.info {
+    -fx-background-color: -monet-primary-fixed-dim;
+    -fx-border-color: -monet-outline;
+}
+
+.hint.info > .label {
+    -fx-text-fill: -monet-on-primary-fixed;
+    -fx-font-size: 12px;
+}
+
+.hint.info .icon {
+    -fx-background-color: -monet-on-primary-fixed;
+}
+
+.iconed-item {
+    -fx-padding: 8 10 8 10;
+    -fx-spacing: 10;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.iconed-item > .label {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+}
+
+.iconed-item .icon {
+    -fx-background-color: -monet-on-surface-variant;
+}
+
+.iconed-item:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.log-card {
+    -fx-padding: 12;
+}
+
+/* ---------------------------------------------------------------- 启动分裂按钮 230x57 */
+.launch-pane {
+    -fx-spacing: 0;
+    -fx-alignment: center-left;
+}
+
+.launch-button {
+    -fx-min-width: 203;
+    -fx-max-width: 203;
+    -fx-min-height: 57;
+    -fx-max-height: 57;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-graphic-text-gap: 10;
+    -fx-background-color: -monet-primary-container;
+    -fx-background-radius: 4 0 0 4;
+    -fx-border-color: linear-gradient(to bottom, transparent 0%, transparent 20%, -monet-on-primary-container 20%, -monet-on-primary-container 80%, transparent 80%, transparent 100%);
+    -fx-border-width: 0 3 0 0;
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.launch-button .icon {
+    -fx-background-color: -monet-on-primary-container;
+}
+
+.launch-button:hover {
+    -fx-background-color: -monet-primary-fixed-dim;
+    -fx-text-fill: -monet-on-primary-fixed;
+}
+
+.launch-button:hover .icon {
+    -fx-background-color: -monet-on-primary-fixed;
+}
+
+.launch-button.stopping {
+    -fx-background-color: -monet-error-container;
+    -fx-text-fill: -monet-on-error-container;
+    -fx-border-color: linear-gradient(to bottom, transparent 0%, transparent 20%, -monet-on-error-container 20%, -monet-on-error-container 80%, transparent 80%, transparent 100%);
+}
+
+.launch-button.stopping .icon {
+    -fx-background-color: -monet-on-error-container;
+}
+
+.launch-button.stopping:hover {
+    -fx-background-color: -monet-error;
+    -fx-text-fill: -monet-on-error;
+}
+
+.launch-button.stopping:hover .icon {
+    -fx-background-color: -monet-on-error;
+}
+
+.launch-menu-button {
+    -fx-min-width: 27;
+    -fx-max-width: 27;
+    -fx-min-height: 57;
+    -fx-max-height: 57;
+    -fx-padding: 0;
+    -fx-background-color: -monet-primary-container;
+    -fx-background-radius: 0 4 4 0;
+    -fx-border-color: linear-gradient(to bottom, transparent 0%, transparent 20%, -monet-on-primary-container 20%, -monet-on-primary-container 80%, transparent 80%, transparent 100%);
+    -fx-border-width: 0 0 0 1;
+    -fx-cursor: hand;
+}
+
+.launch-menu-button .icon {
+    -fx-background-color: -monet-on-primary-container;
+}
+
+.launch-menu-button:hover {
+    -fx-background-color: -monet-primary-fixed-dim;
+}
+
+.launch-menu-button:hover .icon {
+    -fx-background-color: -monet-on-primary-fixed;
+}
+
+/* ---------------------------------------------------------------- 按钮 */
+.button {
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+    -fx-padding: 6 14 6 14;
+    -fx-background-color: transparent;
+    -fx-text-fill: -monet-on-surface;
+    -fx-border-width: 0;
+}
+
+.button-raised {
+    -fx-background-color: -monet-primary;
+    -fx-text-fill: -monet-on-primary;
+    -fx-font-weight: bold;
+}
+
+.button-raised:hover {
+    -fx-background-color: -monet-primary-fixed-dim;
+    -fx-text-fill: -monet-on-primary-fixed;
+}
+
+.button-border {
+    -fx-background-color: transparent;
+    -fx-border-color: -monet-outline;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+    -fx-text-fill: -monet-primary;
+    -fx-graphic-text-gap: 6;
+}
+
+.button-border .icon {
+    -fx-background-color: -monet-primary;
+}
+
+.button-border:hover {
+    -fx-background-color: -monet-primary-transparent-50;
+}
+
+.button-text {
+    -fx-background-color: transparent;
+    -fx-text-fill: -monet-primary;
+    -fx-padding: 4 8 4 8;
+    -fx-border-width: 0;
+}
+
+.button-text:hover {
+    -fx-background-color: -monet-primary-transparent-50;
+}
+
+/* ---------------------------------------------------------------- 输入控件 */
+.text-field {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-background-radius: 4;
+    -fx-text-fill: -monet-on-surface;
+    -fx-prompt-text-fill: -monet-on-surface-variant-transparent-38;
+    -fx-padding: 7 10 7 10;
+    -fx-border-width: 0;
+}
+
+.text-field:focused {
+    -fx-background-color: -monet-surface-container-high;
+    -fx-border-color: -monet-primary;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+}
+
+.search-field {
+    -fx-padding: 7 10 7 10;
+}
+
+.combo-box {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-background-radius: 4;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -monet-on-surface;
+    -fx-padding: 7 10 7 10;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: -monet-on-surface-variant;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -monet-surface-container-high;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 10, 0.14, 0, 3);
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -monet-on-surface;
+    -fx-padding: 8 12 8 12;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+    -fx-text-fill: -monet-on-secondary-container;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: -monet-secondary-container;
+    -fx-text-fill: -monet-on-secondary-container;
+}
+
+.slider {
+    -fx-padding: 6 0 6 0;
+}
+
+.slider .track {
+    -fx-background-color: -monet-secondary-container;
+    -fx-background-radius: 4;
+    -fx-pref-height: 6;
+}
+
+.slider .thumb {
+    -fx-background-color: -monet-primary;
+    -fx-background-radius: 20;
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+}
+
+.slider:focused .thumb {
+    -fx-effect: null;
+}
+
+.progress-bar {
+    -fx-pref-height: 6;
+    -fx-min-height: 6;
+}
+
+.progress-bar > .track {
+    -fx-background-color: -monet-secondary-container;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: -monet-primary;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+    -fx-padding: 3;
+}
+
+/* ---------------------------------------------------------------- 版本列表 */
+.version-list {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 6;
+    -fx-padding: 2;
+    -fx-border-width: 0;
+    -fx-control-inner-background: -monet-surface-container-low;
+}
+
+.version-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 6 10 6 10;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 0 0 1 0;
+}
+
+.version-list .list-cell:filled:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.version-list .list-cell:filled:selected {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+}
+
+.version-list .list-cell:filled:selected .two-line-title {
+    -fx-text-fill: -monet-on-secondary-container;
+    -fx-font-weight: bold;
+}
+
+.version-list .list-cell:filled:selected .two-line-subtitle {
+    -fx-text-fill: -monet-on-secondary-container;
+}
+
+/* ---------------------------------------------------------------- 设置项列表 */
+.options-list-item {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 12 16 12 16;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+}
+
+.options-list-item.first {
+    -fx-border-width: 0;
+    -fx-background-radius: 6 6 0 0;
+}
+
+.options-list-item.last {
+    -fx-background-radius: 0 0 6 6;
+}
+
+.options-list-item.first.last {
+    -fx-background-radius: 6;
+}
+
+.option-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 14px;
+}
+
+.option-subtitle {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.value-label {
+    -fx-text-fill: -monet-primary;
+    -fx-font-size: 13px;
+    -fx-min-width: 74;
+    -fx-alignment: center-right;
+}
+
+/* ---------------------------------------------------------------- 日志区 */
+.log-area {
+    -fx-font-family: "Cascadia Mono", "Consolas", "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 4;
+    -fx-text-fill: -monet-on-surface;
+    -fx-highlight-fill: -monet-primary-container;
+    -fx-highlight-text-fill: -monet-on-primary-container;
+    -fx-border-width: 0;
+}
+
+.log-area .content {
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 4;
+}
+
+.log-area:focused .content {
+    -fx-background-color: -monet-surface-container;
+}
+
+.log-area .text {
+    -fx-fill: -monet-on-surface;
+}
+
+/* ---------------------------------------------------------------- 状态栏 */
+.status-bar {
+    -fx-min-height: 34;
+    -fx-padding: 7 16 7 16;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 0 0 8 8;
+}
+
+.status-text {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.download-progress {
+    -fx-pref-width: 220;
+}
+
+/* ---------------------------------------------------------------- 弹出菜单 */
+.context-menu {
+    -fx-background-color: -monet-surface-container-high;
+    -fx-background-radius: 4;
+    -fx-padding: 4;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 12, 0.16, 0, 4);
+}
+
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 3;
+    -fx-padding: 7 14 7 14;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+}
+
+.context-menu .menu-item:focused {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+}
+
+.context-menu .menu-item:focused .label {
+    -fx-text-fill: -monet-on-secondary-container;
+}
+
+.context-menu .separator {
+    -fx-padding: 4 0 4 0;
+}
+
+.context-menu .separator .line {
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ---------------------------------------------------------------- 滚动条 */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -monet-surface-tint;
+    -fx-background-radius: 6;
+    -fx-opacity: 0.55;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-opacity: 0.85;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+/* =============================================================================
+   图标：CSS 驱动的纯色 Region（-fx-shape 描述几何，填充色取 -monet-* 变量）
+   ============================================================================= */
+.icon {
+    -fx-background-color: -monet-on-surface-variant;
+    -fx-background-insets: 0;
+    -fx-scale-shape: true;
+}
+
+.icon-home {
+    -fx-shape: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z";
+}
+
+.icon-versions {
+    -fx-shape: "M4 6h16v2H4zM4 11h16v2H4zM4 16h10v2H4z";
+}
+
+.icon-settings {
+    -fx-shape: "M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z";
+}
+
+.icon-play {
+    -fx-shape: "M8 5v14l11-7z";
+}
+
+.icon-stop {
+    -fx-shape: "M6 6h12v12H6z";
+}
+
+.icon-expand {
+    -fx-shape: "M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z";
+}
+
+.icon-chevron {
+    -fx-shape: "M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z";
+}
+
+.icon-account {
+    -fx-shape: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z";
+}
+
+.icon-refresh {
+    -fx-shape: "M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-8 8s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z";
+}
+
+.icon-terminal {
+    -fx-shape: "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zM6 10h2v2H6zm4 0h2v2h-2zm4 0h4v2h-4z";
+}
+
+.icon-info {
+    -fx-shape: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z";
+}
+
+.icon-folder {
+    -fx-shape: "M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z";
+}
+
+.icon-java {
+    -fx-shape: "M12 2 3 7v10l9 5 9-5V7zm0 2.3 6.7 3.7L12 11.7 5.3 8zM5 9.6l6 3.3v7.5l-6-3.3zm14 0v7.5l-6 3.3v-7.5z";
+}
+
+.icon-theme {
+    -fx-shape: "M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16V5c3.87 0 7 3.13 7 7s-3.13 7-7 7z";
+}
+
+.icon-search {
+    -fx-shape: "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z";
+}
+
+/* 窗口按钮图标（10x10 视口） */
+.icon-minimize {
+    -fx-shape: "M0 4.5h10v1H0z";
+}
+
+.icon-maximize {
+    -fx-shape: "M0 0h10v10H0V0zm1 1v8h8V1H1z";
+}
+
+.icon-close {
+    -fx-shape: "M0.6 0 5 4.4 9.4 0 10 0.6 5.6 5 10 9.4 9.4 10 5 5.6 0.6 10 0 9.4 4.4 5 0 0.6z";
+}
+
+.icon-delete {
+    -fx-shape: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
+}
+
+.icon-plus {
+    -fx-shape: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z";
+}
+
+.icon-open {
+    -fx-shape: "M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z";
+}
+
+/* =============================================================================
+   版本安装状态标签（本地已安装 / 未安装 / 仅本地）
+   ============================================================================= */
+.tag-installed {
+    -fx-background-color: -monet-primary-container;
+    -fx-text-fill: -monet-on-primary-container;
+}
+
+.tag-local {
+    -fx-background-color: -monet-tertiary-container;
+    -fx-text-fill: -monet-on-tertiary-container;
+}
+
+.tag-missing {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-text-fill: -monet-on-surface-variant;
+}
+
+/* 损坏版本（JSON 解析失败 / 缺少本体 jar） */
+.tag-damaged {
+    -fx-background-color: -monet-error-container;
+    -fx-text-fill: -monet-on-error-container;
+}
+
+/* =============================================================================
+   危险操作按钮（删除：移入回收站）
+   ============================================================================= */
+.button-danger {
+    -fx-background-color: -monet-error;
+    -fx-text-fill: -monet-on-error;
+    -fx-font-weight: bold;
+    -fx-graphic-text-gap: 6;
+}
+
+.button-danger .icon {
+    -fx-background-color: -monet-on-error;
+}
+
+.button-danger:hover {
+    -fx-background-color: -monet-error-container;
+    -fx-text-fill: -monet-on-error-container;
+}
+
+.button-danger:hover .icon {
+    -fx-background-color: -monet-on-error-container;
+}
+
+.button-danger:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* =============================================================================
+   确认对话框（删除二次确认 / 新建目录确认）
+   ============================================================================= */
+.dialog-pane {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.dialog-pane > .content.label,
+.dialog-pane .label {
+    -fx-text-fill: -monet-on-surface;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -monet-surface-container;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-text-fill: -monet-on-surface;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: -monet-surface-variant;
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: -monet-primary;
+    -fx-text-fill: -monet-on-primary;
+}
+
+.dialog-pane .button:default:hover {
+    -fx-background-color: -monet-primary-fixed-dim;
+    -fx-text-fill: -monet-on-primary-fixed;
+}
+
+.dialog-pane .button.danger {
+    -fx-background-color: -monet-error;
+    -fx-text-fill: -monet-on-error;
+}
+
+.dialog-pane .button.danger:hover {
+    -fx-background-color: -monet-error-container;
+    -fx-text-fill: -monet-on-error-container;
+}
+
+/* 目录管理页的路径显示 */
+.path-value {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-family: "Consolas", "Microsoft YaHei UI", monospace;
+    -fx-font-size: 12px;
+}
+
+.dir-meta {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+/* =============================================================================
+   Monet 主页 / 实例 / 账户（HMCL 官方布局复刻）
+   ============================================================================= */
+
+.greeting {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.greeting-sub {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 13px;
+}
+
+/* 主页 Hero 卡片：主色容器承载「当前实例 + 启动」 */
+.hero-card {
+    -fx-background-color: linear-gradient(to bottom right, -monet-primary-container, -monet-secondary-container);
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 12, 0.12, 0, 3);
+}
+
+.hero-avatar {
+    -fx-min-width: 64;
+    -fx-min-height: 64;
+    -fx-max-width: 64;
+    -fx-max-height: 64;
+    -fx-background-color: -monet-primary;
+    -fx-background-radius: 14;
+    -fx-alignment: center;
+}
+
+.hero-avatar > .label {
+    -fx-text-fill: -monet-on-primary;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.hero-title {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+}
+
+.hero-subtitle {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 12px;
+    -fx-opacity: 0.78;
+}
+
+.hero-divider {
+    -fx-min-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: -monet-on-primary-container;
+    -fx-opacity: 0.18;
+}
+
+.hero-path {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-family: "Consolas", "Microsoft YaHei UI", monospace;
+    -fx-font-size: 11px;
+    -fx-opacity: 0.75;
+}
+
+/* Hero 内浅色标签：在主色容器上用高透明度描边，不用硬编码颜色 */
+.tag-hero {
+    -fx-background-color: -monet-on-primary-container;
+    -fx-opacity: 0.16;
+    -fx-background-radius: 4;
+    -fx-min-height: 20;
+    -fx-padding: 0 8 0 8;
+}
+
+.tag-hero-text {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* 区块标题行 */
+.section-header {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.section-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.section-sub {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+}
+
+.toolbar {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+/* 实例列表卡片 */
+.instance-list {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-control-inner-background: transparent;
+}
+
+.instance-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 8 0;
+}
+
+.instance-list .list-cell:filled:hover .instance-card {
+    -fx-background-color: -monet-surface-container;
+}
+
+.instance-list .list-cell:filled:selected .instance-card {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+    -fx-border-color: -monet-primary;
+}
+
+.instance-card {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.instance-avatar {
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-max-width: 40;
+    -fx-max-height: 40;
+    -fx-background-color: -monet-primary-container;
+    -fx-background-radius: 8;
+    -fx-alignment: center;
+}
+
+.instance-avatar > .label {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.instance-name {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.instance-meta {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+}
+
+/* 实例详情面板 */
+.detail-panel {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-spacing: 12;
+}
+
+.detail-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+/* 实例内容管理入口（模组 / 资源包 / 存档 / 截图 ...） */
+.content-entry {
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-min-width: 86;
+    -fx-pref-width: 86;
+    -fx-alignment: center;
+    -fx-spacing: 3;
+    -fx-cursor: hand;
+}
+
+.content-entry:hover {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+    -fx-border-color: -monet-primary;
+}
+
+.content-entry .icon {
+    -fx-background-color: -monet-primary;
+}
+
+.content-entry-label {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.content-entry-count {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 10px;
+}
+
+/* 主页右列的游戏目录小卡片 */
+.mini-dir-row {
+    -fx-padding: 8 8 8 8;
+    -fx-spacing: 10;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.mini-dir-row:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.mini-dir-row.active {
+    -fx-background-color: -monet-secondary-container-transparent-50;
+}
+
+.mini-dir-name {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+}
+
+.mini-dir-path {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 10px;
+}
+
+.mini-dir-row.active .mini-dir-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: -monet-on-secondary-container;
+}
+
+.mini-dir-row .icon {
+    -fx-background-color: -monet-on-surface-variant;
+}
+
+/* 账户卡片 */
+.account-card {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-width: 1;
+    -fx-padding: 14;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+}
+
+.account-card.current {
+    -fx-border-color: -monet-primary;
+    -fx-border-width: 2;
+    -fx-background-color: -monet-secondary-container-transparent-50;
+}
+
+.account-avatar {
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
+    -fx-background-radius: 22;
+    -fx-alignment: center;
+    -fx-background-color: -monet-primary-container;
+}
+
+.account-avatar > .label {
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.account-avatar.offline {
+    -fx-background-color: -monet-tertiary-container;
+}
+
+.account-avatar.offline > .label {
+    -fx-text-fill: -monet-on-tertiary-container;
+}
+
+.account-name {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.account-meta {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+}
+
+.tag-current {
+    -fx-background-color: -monet-primary;
+    -fx-text-fill: -monet-on-primary;
+    -fx-background-radius: 4;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.tag-offline {
+    -fx-background-color: -monet-tertiary-container;
+    -fx-text-fill: -monet-on-tertiary-container;
+}
+
+.tag-isolated {
+    -fx-background-color: -monet-primary-container;
+    -fx-text-fill: -monet-on-primary-container;
+}
+
+.empty-hint {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+    -fx-padding: 18;
+}
+
+.switch-row {
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-padding: 6 0 6 0;
+}
+
+.check-box {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+}
+
+.check-box .box {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-background-radius: 3;
+    -fx-border-color: -monet-outline;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -monet-primary;
+    -fx-border-color: -monet-primary;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -monet-on-primary;
+}
+
+/* 新增图标 */
+.icon-grid {
+    -fx-shape: "M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z";
+}
+
+.icon-mod {
+    -fx-shape: "M20 6h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v4h2c1.1 0 2 .9 2 2s-.9 2-2 2H2v4c0 1.1.9 2 2 2h4v-2c0-1.1.9-2 2-2s2 .9 2 2v2h6c1.1 0 2-.9 2-2v-3h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2V8c0-1.1-.9-2-2-2z";
+}
+
+.icon-pack {
+    -fx-shape: "M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8z";
+}
+
+.icon-image {
+    -fx-shape: "M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z";
+}
+
+.icon-save {
+    -fx-shape: "M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z";
+}
+
+.icon-shader {
+    -fx-shape: "M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z";
+}
+
+.icon-lock {
+    -fx-shape: "M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm3 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z";
+}
+
+.icon-edit {
+    -fx-shape: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z";
+}
+
+.icon-thread {
+    -fx-shape: "M4 6h16v2H4zM4 11h11v2H4zM4 16h7v2H4zM18 13l3 4h-6z";
+}
+
+/* ================================================================
+ * 模组下载页（HMCL / Modrinth App 风格：左侧筛选栏 + 右侧内容区 + 全宽详情 + 可折叠日志）
+ * 所有颜色均取自 -monet-* 变量，浅色 / 深色主题自动适配，避免出现白字压浅底的对比度事故。
+ * ================================================================ */
+.mods-sidebar {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 8;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 10 10 10 10;
+}
+
+.mods-filter-label {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+    -fx-padding: 4 0 0 2;
+}
+
+.mods-chip {
+    -fx-background-color: transparent;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-background-radius: 10;
+    -fx-padding: 1 8 1 8;
+    -fx-font-size: 11px;
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-cursor: hand;
+}
+
+.mods-chip:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.mods-chip:selected {
+    -fx-background-color: -monet-primary-container;
+    -fx-border-color: -monet-primary;
+    -fx-text-fill: -monet-on-primary-container;
+}
+
+.mods-content-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.mods-view-mode {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 4;
+    -fx-padding: 2 8 2 8;
+}
+
+/* ---------------- 结果列表 ---------------- */
+.mods-row {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 8 10 8 10;
+    -fx-cursor: hand;
+}
+
+.mods-row:hover {
+    -fx-background-color: -monet-surface-container-high;
+    -fx-border-color: -monet-outline-variant;
+}
+
+.mods-row-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.mods-row-meta {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 11px;
+}
+
+/* ---------------- 徽标 ---------------- */
+.mods-badge {
+    -fx-font-size: 10px;
+    -fx-padding: 0 6 0 6;
+    -fx-background-radius: 3;
+}
+
+.mods-badge-release {
+    -fx-background-color: #CDEBD3;
+    -fx-text-fill: #05431C;
+}
+
+.mods-badge-beta {
+    -fx-background-color: #FFE7B0;
+    -fx-text-fill: #4A3200;
+}
+
+.mods-badge-alpha {
+    -fx-background-color: #FFDAD6;
+    -fx-text-fill: #410002;
+}
+
+.mods-badge-unknown {
+    -fx-background-color: -monet-surface-container-highest;
+    -fx-text-fill: -monet-on-surface-variant;
+}
+
+.mods-badge-installed {
+    -fx-background-color: -monet-primary-container;
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-weight: bold;
+}
+
+/* ---------------- 空态 / 加载态 ---------------- */
+.mods-empty-badge {
+    -fx-background-color: -monet-primary-container;
+    -fx-text-fill: -monet-on-primary-container;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 8 18 8 18;
+}
+
+.mods-empty-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.mods-loading-bar {
+    -fx-pref-height: 4;
+    -fx-max-height: 4;
+}
+
+.mods-skeleton {
+    -fx-background-color: -monet-surface-container-high;
+    -fx-background-radius: 8;
+}
+
+/* ---------------- 详情 ---------------- */
+.mods-banner {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+}
+
+.mods-detail-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.mods-ops {
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+}
+
+.mods-desc {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+    -fx-line-spacing: 2;
+}
+
+.mods-version-row {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 6;
+    -fx-padding: 6 8 6 8;
+}
+
+.mods-version-row:hover {
+    -fx-background-color: -monet-surface-container-high;
+}
+
+.mods-version-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* ---------------- 日志（可折叠） ---------------- */
+.mods-log-bar {
+    -fx-background-color: -monet-surface-container;
+    -fx-background-radius: 6;
+    -fx-padding: 5 10 5 10;
+}
+
+.mods-log-status {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.mods-log-progress {
+    -fx-pref-height: 4;
+    -fx-max-height: 4;
+}
+
+.mods-log-scroll {
+    -fx-background-color: -monet-surface-container-low;
+    -fx-background-radius: 6;
+    -fx-border-color: -monet-outline-variant;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+}
+
+.log-line {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-family: "Cascadia Mono", "Consolas", "JetBrains Mono", monospace;
+    -fx-font-size: 11.5px;
+}
+
+/* ---------------- 确认安装弹窗 ---------------- */
+.mods-veil {
+    -fx-background-color: -monet-scrim;
+    -fx-opacity: 0.38;
+}
+
+.mods-dialog {
+    -fx-background-color: -monet-surface-container-lowest;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, -monet-depth-color, 24, 0.2, 0, 8);
+    -fx-padding: 16;
+}
+
+.mods-dialog-title {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.mods-dialog-subtitle {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.mods-dialog-section {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 0 0 0;
+}
+
+.mods-dialog-key {
+    -fx-text-fill: -monet-on-surface-variant;
+    -fx-font-size: 12px;
+}
+
+.mods-dialog-value {
+    -fx-text-fill: -monet-on-surface;
+    -fx-font-size: 12px;
+}
+
+/* 安装加载器页：字段等宽排布，避免下拉文字被截断 */
+.field-box {
+    -fx-spacing: 3;
+}
