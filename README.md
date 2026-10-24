@@ -1,5 +1,7 @@
 # MCLQE Launcher
 
+[官网](https://yezi-fak.github.io/MCLQE/) · [下载最新版](https://github.com/yezi-fak/MCLQE/releases/latest) · [问题反馈](https://github.com/yezi-fak/MCLQE/issues) · GPL-3.0
+
 ![MCLQE Launcher 主界面](docs/screenshots/mclqe-home.png)
 
 一个基于 **Java 21 + JavaFX 21 + Maven** 的 Minecraft 启动器（版本 1.0.0）。全部源代码为独立编写，仅在功能设计与技术方案层面参考社区公开启动器与 Mojang 官方文档，详见「九、来源与致谢」。
