@@ -1,5 +1,7 @@
 # MCLQE Launcher
 
+![MCLQE Launcher 主界面](docs/screenshots/mclqe-home.png)
+
 一个基于 **Java 21 + JavaFX 21 + Maven** 的 Minecraft 启动器（版本 1.0.0）。全部源代码为独立编写，仅在功能设计与技术方案层面参考社区公开启动器与 Mojang 官方文档，详见「九、来源与致谢」。
 
 工程已在本机实际执行 `mvnw.cmd -B -DskipTests package` 构建通过（`BUILD SUCCESS`），产物为 `target/mclqe-launcher.jar`。
