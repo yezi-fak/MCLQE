@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常见问题 — MCLQE 启动器下载、Java 版本与模组安装</title>
+<meta name="description" content="MCLQE 常见问题解答：MCLQE 是什么、如何下载安装、需要什么 Java 版本、与 HMCL/PCL 的区别、模组怎么装、微软正版登录、内存设置、启动报错排查、隐私与开源协议。">
+<meta property="og:title" content="常见问题 — MCLQE 启动器">
+<meta property="og:description" content="MCLQE 启动器常见问题：下载安装、Java 版本要求、模组安装、正版登录与报错排查。">
+<meta property="og:image" content="https://yezi-fak.github.io/MCLQE/screenshots/mclqe-home.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yezi-fak.github.io/MCLQE/faq.html">
+<meta name="keywords" content="MCLQE,MC启动器,Minecraft启动器,我的世界启动器,Java版启动器,启动器常见问题,Java版本,Modrinth,微软正版登录,启动报错">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://yezi-fak.github.io/MCLQE/faq.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://yezi-fak.github.io/MCLQE/faq.html",
+  "inLanguage": "zh-CN",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "MCLQE 是什么？",
+      "acceptedAnswer": {"@type": "Answer", "text": "MCLQE 是一款基于 Java 21 + JavaFX 21 开发的开源 Minecraft Java 版启动器，Windows 上解压即用，集成版本管理、模组与加载器安装、微软正版登录，本身不包含任何游戏本体文件。"}
+    },
+    {
+      "@type": "Question",
+      "name": "怎么下载和安装 MCLQE？",
+      "acceptedAnswer": {"@type": "Answer", "text": "从本站下载页或 GitHub Releases 下载 MCLQE-launcher-windows-x64.zip（约 61.6 MB），解压到任意目录后双击启动程序即可；免安装、无需管理员权限，包内已带运行时。"}
+    },
+    {
+      "@type": "Question",
+      "name": "MCLQE 需要什么 Java 版本？",
+      "acceptedAnswer": {"@type": "Answer", "text": "启动器自带运行时，通常无需另装 Java。若要使用自己的 JDK：Minecraft 1.16.5 及更早需要 JDK 8，1.17 至 1.20.4 需要 JDK 17，1.20.5 及 1.21 以上需要 JDK 21；启动前会异步检测并提示。"}
+    },
+    {
+      "@type": "Question",
+      "name": "MCLQE 和 HMCL、PCL 有什么区别？",
+      "acceptedAnswer": {"@type": "Answer", "text": "MCLQE 主打轻量、干净、开箱即用：JavaFX 原生界面、不内嵌浏览器内核、固定默认游戏目录并支持多目录、模组走 Modrinth 一键安装、加载器支持 Fabric/Quilt/Forge/NeoForge。需要更复杂功能时可选 HMCL 或 PCL2，三者可共存。"}
+    },
+    {
+      "@type": "Question",
+      "name": "模组怎么安装？",
+      "acceptedAnswer": {"@type": "Answer", "text": "在左侧「模组」面板搜索 Modrinth，选中后指定目标版本目录，启动器自动解析依赖并下载；也可手动把 jar 放入该版本的 mods 文件夹。模组需匹配游戏版本与加载器，Fabric/Quilt 与 Forge/NeoForge 的模组不可混用。"}
+    },
+    {
+      "@type": "Question",
+      "name": "可以用微软正版账号登录吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "可以。使用微软标准 OAuth 设备码流程登录，可用正版账号进入正版服务器；同时保留离线模式。账号凭据只保存在本地，不上传到第三方服务器。"}
+    },
+    {
+      "@type": "Question",
+      "name": "内存应该设置多少？",
+      "acceptedAnswer": {"@type": "Answer", "text": "建议取物理内存的 1/4 到 1/2：8 GB 设 2048–3072 MB，16 GB 设 4096–6144 MB，32 GB 及以上设 6144–8192 MB。加光影或大型整合包可上调，但不要超过物理内存一半。可在「设置 → 内存上限」调整。"}
+    },
+    {
+      "@type": "Question",
+      "name": "启动报错怎么办？",
+      "acceptedAnswer": {"@type": "Answer", "text": "先看启动状态提示与版本目录下的日志。常见原因是 Java 版本与游戏版本不匹配、模组与游戏或加载器版本不兼容、内存设置过大、游戏目录无写入权限。对齐版本、临时移出模组或重新检测 Java 环境通常可定位问题。"}
+    },
+    {
+      "@type": "Question",
+      "name": "MCLQE 会收集隐私数据吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "不会。启动器无遥测、不收集行为数据，账号与配置只存在本地；仅在安装模组、加载器或检查更新时访问 Modrinth 与 GitHub 的公开接口。"}
+    },
+    {
+      "@type": "Question",
+      "name": "MCLQE 使用什么开源协议？",
+      "acceptedAnswer": {"@type": "Answer", "text": "GPL-3.0。源码在 GitHub 公开，可查看、修改与再分发（需遵循 GPL-3.0 条款）。MCLQE 为非官方社区项目，与 Mojang Studios、Microsoft、网易无关联。"}
+    }
+  ]
+}
+</script>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+:root{
+  --bg:#0b0e14;
+  --bg-2:#101020;
+  --panel:rgba(255,255,255,.04);
+  --panel-2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f0f0f0;
+  --muted:#9aa4b2;
+  --green:#30d090;
+  --cyan:#50e0d0;
+  --r-lg:22px;
+  --r-md:16px;
+  --r-sm:11px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",system-ui,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:16px;top:12px;z-index:99;background:#0d1420;border:1px solid var(--line);padding:10px 16px;border-radius:10px}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(760px 520px at 14% -2%, rgba(48,208,144,.15), transparent 62%),
+    radial-gradient(680px 460px at 88% 2%, rgba(80,224,208,.11), transparent 64%),
+    radial-gradient(900px 640px at 50% 108%, rgba(48,208,144,.06), transparent 70%);
+}
+/* 导航 */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.4px;font-size:15.5px}
+.brand img{width:28px;height:28px;border-radius:8px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14.5px;color:var(--muted)}
+.nav ul a{transition:color .2s}
+.nav ul a:hover{color:var(--text)}
+.nav ul a[aria-current="page"]{color:var(--green);position:relative}
+.nav ul a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-21px;height:2px;
+  background:var(--green);border-radius:2px;box-shadow:0 0 10px rgba(48,208,144,.6)}
+.nav .gh{border:1px solid var(--line);padding:7px 14px;border-radius:9px;font-size:13.5px;color:var(--text);transition:.2s;white-space:nowrap}
+.nav .gh:hover{border-color:rgba(48,208,144,.6);color:var(--green)}
+/* 页头 */
+.page-head{padding:80px 0 26px}
+.crumb{font-size:12.5px;color:#6f7987;margin-bottom:22px}
+.crumb a:hover{color:var(--green)}
+.crumb span{margin:0 8px;opacity:.5}
+h1{font-size:clamp(36px,5.2vw,60px);line-height:1.06;letter-spacing:-.035em;font-weight:800;
+  background:linear-gradient(180deg,#ffffff 34%,#c9d4de 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);max-width:680px;font-size:16px;margin-top:20px}
+.meta-line{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:26px;font-size:12.8px;color:var(--muted)}
+.meta-line span{display:inline-flex;align-items:center;gap:7px}
+.meta-line span::before{content:"";width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.28)}
+.meta-line b{color:var(--text);font-weight:600}
+/* 通用 */
+section{padding:44px 0}
+.eyebrow{color:var(--green);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+h2{font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:14px;font-weight:600;
+  font-size:15.5px;transition:transform .22s var(--ease),box-shadow .22s,background .22s,border-color .22s;white-space:nowrap}
+.btn-main{background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;box-shadow:0 12px 32px rgba(48,208,144,.24)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(48,208,144,.34)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:rgba(48,208,144,.55);color:var(--green)}
+code{font-family:"Cascadia Code",Consolas,monospace;font-size:12.8px;color:var(--cyan);
+  background:rgba(80,224,208,.08);padding:3px 8px;border-radius:6px}
+/* 目录卡 */
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
+.toc a{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  transition:.24s var(--ease);font-size:13.6px}
+.toc a:hover{border-color:rgba(48,208,144,.42);transform:translateY(-2px);background:rgba(48,208,144,.06)}
+.toc .no{width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
+  font-size:11.5px;color:var(--green);background:rgba(48,208,144,.12);border:1px solid rgba(48,208,144,.18)}
+/* 问答 */
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+details{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:border-color .25s,background .25s}
+details:hover{border-color:var(--line-2)}
+details[open]{border-color:rgba(48,208,144,.34);background:linear-gradient(180deg,rgba(48,208,144,.07),rgba(255,255,255,.02))}
+summary{list-style:none;cursor:pointer;padding:18px 56px 18px 22px;font-size:15.5px;font-weight:600;
+  letter-spacing:-.01em;position:relative;display:flex;align-items:center;gap:12px;min-height:58px}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--green)}
+summary .q{font-size:11.5px;color:var(--green);font-weight:700;border:1px solid rgba(48,208,144,.3);
+  background:rgba(48,208,144,.09);border-radius:6px;padding:2px 7px;flex:none;font-family:"Cascadia Code",Consolas,monospace}
+summary .ind{margin-left:auto;position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;flex:none;color:var(--muted);transition:transform .28s var(--ease);font-size:13px;text-align:center;line-height:16px}
+details[open] summary .ind{transform:translateY(-50%) rotate(180deg);color:var(--green)}
+.ans{padding:0 22px 20px 22px;color:var(--muted);font-size:14.2px;line-height:1.85}
+.ans p+p{margin-top:10px}
+.ans strong{color:var(--text);font-weight:600}
+.ans ul{margin:10px 0 0 2px;padding-left:18px}
+.ans li{margin-top:6px}
+.ans a{color:var(--green);border-bottom:1px solid rgba(48,208,144,.35)}
+.ans a:hover{color:var(--cyan)}
+/* 帮助卡 */
+.help{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:8px}
+.help-card{border:1px solid var(--line);border-radius:var(--r-md);padding:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+.help-card h3{font-size:16px;margin-bottom:8px;font-weight:650}
+.help-card p{color:var(--muted);font-size:13.6px;margin-bottom:18px}
+.help-card .links{display:flex;gap:12px;flex-wrap:wrap}
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--muted);font-size:13px;margin-top:56px}
+footer .fnav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+footer .fnav a:hover{color:var(--green)}
+footer .fnav a[aria-current="page"]{color:var(--green)}
+.disc{max-width:780px;font-size:12.5px;line-height:1.85;color:#6f7987}
+@media(max-width:860px){
+.nav{gap:10px}
+  .nav ul{display:flex;gap:15px;overflow-x:auto;flex:1;min-width:0;justify-content:flex-start;flex-shrink:1;max-width:100%;mask-image:linear-gradient(to right,#000 86%,transparent);-webkit-mask-image:linear-gradient(to right,#000 86%,transparent)font-size:13.2px;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav ul::-webkit-scrollbar{display:none}
+  .nav ul a[aria-current="page"]::after{display:none}
+  .page-head{padding:56px 0 20px}
+  .toc{grid-template-columns:1fr}
+  .help{grid-template-columns:1fr}
+  section{padding:34px 0}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  summary{padding:16px 48px 16px 18px;font-size:14.6px}
+  .ans{padding:0 18px 18px 18px;font-size:13.8px}
+  .btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="favicon.png" alt="MCLQE">MCLQE</a>
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="download.html">下载安装</a></li>
+      <li><a href="faq.html" aria-current="page">常见问题</a></li>
+    </ul>
+    <a class="gh" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap page-head">
+    <nav class="crumb" aria-label="面包屑"><a href="index.html">首页</a><span>/</span>常见问题</nav>
+    <h1>常见问题</h1>
+    <p class="lead">关于下载安装、Java 版本、模组与正版登录的高频疑问。若这里没有你要的答案，可以到 GitHub Issues 提问。</p>
+    <div class="meta-line">
+      <span>共 <b>10</b> 组问答</span>
+      <span>适用版本 <b>MCLQE v1.0.0</b></span>
+      <span>平台 <b>Windows 10 / 11 x64</b></span>
+    </div>
+  </div>
+
+  <section class="wrap" aria-labelledby="toc-h">
+    <h2 id="toc-h" style="font-size:14px;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-bottom:14px">快速跳转</h2>
+    <nav class="toc" aria-label="问题目录">
+      <a href="#q1"><span class="no">01</span>MCLQE 是什么</a>
+      <a href="#q2"><span class="no">02</span>下载与安装</a>
+      <a href="#q3"><span class="no">03</span>Java 版本要求</a>
+      <a href="#q4"><span class="no">04</span>与 HMCL / PCL 的区别</a>
+      <a href="#q5"><span class="no">05</span>模组怎么装</a>
+      <a href="#q6"><span class="no">06</span>微软正版登录</a>
+      <a href="#q7"><span class="no">07</span>内存设置</a>
+      <a href="#q8"><span class="no">08</span>启动报错排查</a>
+      <a href="#q9"><span class="no">09</span>隐私数据</a>
+      <a href="#q10"><span class="no">10</span>开源协议</a>
+    </nav>
+  </section>
+
+  <section class="wrap" aria-labelledby="qa-h">
+    <h2 id="qa-h" class="eyebrow" style="font-size:12.5px">Questions</h2>
+    <div class="faq-list">
+      <details id="q1" open>
+        <summary><span class="q">Q1</span>MCLQE 是什么？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>MCLQE 是一款基于 <strong>Java 21 + JavaFX 21</strong> 开发的开源 Minecraft Java 版启动器，运行于 Windows 10 / 11 64 位，解压即用。</p>
+          <p>它把版本管理、模组与加载器安装、微软正版登录收在同一个深色界面里；本身<strong>不包含任何游戏本体文件</strong>，启动时下载的资源来自 Mojang 官方源。界面为 JavaFX 原生绘制，不内嵌浏览器内核，启动快、内存占用低。</p>
+        </div>
+      </details>
+
+      <details id="q2">
+        <summary><span class="q">Q2</span>怎么下载和安装？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>到 <a href="download.html">下载与安装</a> 页或 GitHub Releases 下载 <code>MCLQE-launcher-windows-x64.zip</code>（约 61.6 MB），解压到任意目录（如 <code>D:\MCLQE</code>），双击目录内的启动程序即可。</p>
+          <ul>
+            <li>免安装，不需要管理员权限，不写注册表。</li>
+            <li>压缩包内已带运行时，<strong>无需另行安装 Java</strong>。</li>
+            <li>建议解压到非系统盘，且路径不含特殊字符，便于备份存档。</li>
+          </ul>
+        </div>
+      </details>
+
+      <details id="q3">
+        <summary><span class="q">Q3</span>需要什么 Java 版本？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>启动器<strong>自带运行时</strong>，一般情况下不需要你单独安装 Java。若你想指定自己的 JDK，按游戏版本准备：</p>
+          <ul>
+            <li>Minecraft 1.16.5 及更早 → <strong>JDK 8</strong></li>
+            <li>Minecraft 1.17 – 1.20.4 → <strong>JDK 17</strong></li>
+            <li>Minecraft 1.20.5 及 1.21 以上 → <strong>JDK 21</strong></li>
+          </ul>
+          <p>启动前启动器会异步检测 Java 环境，缺失或版本不匹配时会给出提示并引导下载对应运行时。</p>
+        </div>
+      </details>
+
+      <details id="q4">
+        <summary><span class="q">Q4</span>和 HMCL、PCL 有什么区别？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>MCLQE 的定位是<strong>轻量、干净、开箱即用</strong>：</p>
+          <ul>
+            <li>JavaFX 原生界面，不内嵌浏览器内核；</li>
+            <li>默认游戏目录固定为 <code>D:\MCLQE\MCLQE</code>，并支持多目录切换；</li>
+            <li>模组通过 Modrinth 官方接口搜索并一键安装；</li>
+            <li>加载器支持 Fabric / Quilt / Forge / NeoForge 一键部署。</li>
+          </ul>
+          <p>如果你需要大量第三方下载镜像、整合包制作等更重的功能，HMCL 与 PCL2 更合适。三者互不冲突，可以同时安装，共用同一套游戏目录也不会破坏存档。</p>
+        </div>
+      </details>
+
+      <details id="q5">
+        <summary><span class="q">Q5</span>模组怎么装？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>在左侧「模组」面板搜索 Modrinth，选中后指定目标版本目录，启动器会自动解析依赖并下载到该版本的 <code>mods</code> 文件夹；也可以手动把 jar 拖进对应目录。</p>
+          <ul>
+            <li>模组必须匹配<strong>游戏版本</strong>与<strong>加载器类型</strong>；</li>
+            <li>Fabric / Quilt 的模组与 Forge / NeoForge 的模组不能混用；</li>
+            <li>需要前置库（如 Fabric API）时，启动器会在依赖解析中提示。</li>
+          </ul>
+        </div>
+      </details>
+
+      <details id="q6">
+        <summary><span class="q">Q6</span>可以用微软正版账号登录吗？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>可以。登录走<strong>微软标准 OAuth 设备码流程</strong>，登录后即以正版身份启动，可进入正版服务器；同时保留离线模式，本地游玩无需账号。</p>
+          <p>账号凭据与游戏配置只保存在本地目录，不会上传到任何第三方服务器。</p>
+        </div>
+      </details>
+
+      <details id="q7">
+        <summary><span class="q">Q7</span>内存应该设置多少？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>经验值是物理内存的 1/4 到 1/2：</p>
+          <ul>
+            <li>8 GB 内存 → 2048–3072 MB</li>
+            <li>16 GB 内存 → 4096–6144 MB</li>
+            <li>32 GB 及以上 → 6144–8192 MB</li>
+          </ul>
+          <p>加光影或大型整合包时可再上调，但不要超过物理内存的一半，否则系统整体会卡。调整位置：<strong>设置 → 内存上限</strong>。</p>
+        </div>
+      </details>
+
+      <details id="q8">
+        <summary><span class="q">Q8</span>启动报错怎么办？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>先看启动器底部的状态提示，以及对应版本目录下的日志文件。常见原因与处理：</p>
+          <ul>
+            <li><strong>Java 版本不匹配</strong>：按 Q3 的版本对照表更换 JDK，或点「重新检测」；</li>
+            <li><strong>模组不兼容</strong>：暂时移出 <code>mods</code> 目录内的模组，再逐个加回定位；</li>
+            <li><strong>内存过大</strong>：调低内存上限后重试；</li>
+            <li><strong>目录无写入权限</strong>：把游戏目录移到非系统盘或用户目录下。</li>
+          </ul>
+          <p>仍无法解决时，把日志附到 <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">GitHub Issues</a>。</p>
+        </div>
+      </details>
+
+      <details id="q9">
+        <summary><span class="q">Q9</span>会收集我的隐私数据吗？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>不会。启动器<strong>没有遥测</strong>，不收集行为数据，也不要求注册任何账号；账号凭据、游戏配置与日志都只存在本地目录。</p>
+          <p>仅在安装模组、安装加载器或检查更新时，会访问 Modrinth 与 GitHub 的公开接口获取版本信息。</p>
+        </div>
+      </details>
+
+      <details id="q10">
+        <summary><span class="q">Q10</span>使用什么开源协议？<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>项目使用 <strong>GPL-3.0</strong> 协议，源码托管在 <a href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub</a>，可自由查看、修改与再分发（需遵循 GPL-3.0 条款）。</p>
+          <p>MCLQE 为非官方社区项目，与 Mojang Studios、Microsoft 及网易均无关联；Minecraft 是 Mojang Studios 的商标。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="more-h">
+    <h2 id="more-h" class="eyebrow" style="font-size:12.5px">More</h2>
+    <div class="help">
+      <div class="help-card">
+        <h3>还没找到答案？</h3>
+        <p>把问题现象、启动日志与系统版本发到 Issues，通常会得到回复。也可以先看下载安装页里的常见安装问题。</p>
+        <div class="links">
+          <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">前往 Issues</a>
+          <a class="btn btn-ghost" href="download.html">下载与安装说明</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <h3>直接开始</h3>
+        <p>Windows 10/11 64 位，解压即用，内置运行时，不需要另行安装 Java。</p>
+        <div class="links">
+          <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">↓ 下载 Windows 版</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnav">
+      <a href="index.html">首页</a>
+      <a href="download.html">下载安装</a>
+      <a href="faq.html" aria-current="page">常见问题</a>
+      <a href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">问题反馈</a>
+      <a href="https://github.com/yezi-fak/MCLQE/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a>
+    </div>
+    <p class="disc">MCLQE 为非官方开源项目，与 Mojang Studios、Microsoft 及网易均无任何关联，不包含任何游戏本体文件，启动时需你自行拥有正版账号或使用离线模式。Minecraft 是 Mojang Studios 的商标。</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -299,7 +299,10 @@ footer .fnav a:hover{color:var(--green)}
 /* 响应式 */
 @media(max-width:860px){
   .grid{grid-template-columns:1fr 1fr}
-  .nav ul{display:none}
+.nav{gap:10px}
+  .nav ul{display:flex;gap:15px;overflow-x:auto;flex:1;min-width:0;justify-content:flex-start;flex-shrink:1;max-width:100%;mask-image:linear-gradient(to right,#000 86%,transparent);-webkit-mask-image:linear-gradient(to right,#000 86%,transparent)font-size:13.2px;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav ul::-webkit-scrollbar{display:none}
+  .nav ul a[aria-current="page"]::after{display:none}
   .hero{padding-top:76px}
   section{padding:72px 0}
 }
@@ -366,7 +369,8 @@ footer .fnav a:hover{color:var(--green)}
     <ul>
       <li><a href="#features">功能</a></li>
       <li><a href="#demo">界面演示</a></li>
-      <li><a href="#download">下载</a></li>
+      <li><a href="download.html">下载安装</a></li>
+      <li><a href="faq.html">常见问题</a></li>
     </ul>
     <a class="gh" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
@@ -608,12 +612,16 @@ footer .fnav a:hover{color:var(--green)}
       <div class="dl-row"><span class="k">许可证</span><span class="v">GPL-3.0 · 源码开放</span></div>
       <div class="dl-row"><span class="k">历史版本</span><span class="v"><a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">全部 Release ↗</a></span></div>
     </div>
+    <p class="lead" style="margin-top:26px">安装步骤与校验方法见 <a href="download.html" style="color:var(--green)">下载与安装说明</a>；Java 版本、模组与登录相关问题见 <a href="faq.html" style="color:var(--green)">常见问题</a>。</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="fnav">
+      <a href="index.html">首页</a>
+      <a href="download.html">下载安装</a>
+      <a href="faq.html">常见问题</a>
       <a href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">Releases</a>
       <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">问题反馈</a>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下载与安装 — MCLQE 启动器 Windows 版</title>
+<meta name="description" content="MCLQE 启动器下载与安装说明：系统要求（Windows 10/11 64 位）、Java 版本对照、下载步骤、SHA256 校验、解压运行、首次启动注意事项与常见安装问题。">
+<meta property="og:title" content="下载与安装 — MCLQE 启动器">
+<meta property="og:description" content="下载 MCLQE 启动器 Windows x64 版：约 61.6 MB，解压即用，内置运行时；含系统要求、校验方法与安装问题排查。">
+<meta property="og:image" content="https://yezi-fak.github.io/MCLQE/screenshots/mclqe-home.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yezi-fak.github.io/MCLQE/download.html">
+<meta name="keywords" content="MCLQE下载,MC启动器下载,Minecraft启动器,Windows启动器,Java版启动器安装,启动器校验,我的世界启动器">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://yezi-fak.github.io/MCLQE/download.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "MCLQE",
+      "alternateName": "MCLQE 启动器",
+      "url": "https://yezi-fak.github.io/MCLQE/download.html",
+      "description": "基于 Java 21 与 JavaFX 21 开发的 Minecraft Java 版启动器，Windows 上解压即用，支持版本管理、Modrinth 模组与 Fabric/Quilt/Forge/NeoForge 加载器一键安装、微软正版登录。",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Game Launcher",
+      "operatingSystem": "Windows 10, Windows 11 (64-bit)",
+      "softwareVersion": "1.0.0",
+      "fileSize": "61.6MB",
+      "downloadUrl": "https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip",
+      "installUrl": "https://yezi-fak.github.io/MCLQE/download.html",
+      "license": "https://github.com/yezi-fak/MCLQE/blob/main/LICENSE",
+      "isAccessibleForFree": true,
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"},
+      "author": {"@type": "Organization", "name": "MCLQE", "url": "https://github.com/yezi-fak/MCLQE"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://yezi-fak.github.io/MCLQE/"},
+        {"@type": "ListItem", "position": 2, "name": "下载安装", "item": "https://yezi-fak.github.io/MCLQE/download.html"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+:root{
+  --bg:#0b0e14;
+  --bg-2:#101020;
+  --panel:rgba(255,255,255,.04);
+  --panel-2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f0f0f0;
+  --muted:#9aa4b2;
+  --green:#30d090;
+  --cyan:#50e0d0;
+  --r-lg:22px;
+  --r-md:16px;
+  --r-sm:11px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",system-ui,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:16px;top:12px;z-index:99;background:#0d1420;border:1px solid var(--line);padding:10px 16px;border-radius:10px}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(760px 520px at 14% -2%, rgba(48,208,144,.15), transparent 62%),
+    radial-gradient(680px 460px at 88% 2%, rgba(80,224,208,.11), transparent 64%),
+    radial-gradient(900px 640px at 50% 108%, rgba(48,208,144,.06), transparent 70%);
+}
+/* 导航 */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.4px;font-size:15.5px}
+.brand img{width:28px;height:28px;border-radius:8px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14.5px;color:var(--muted)}
+.nav ul a{transition:color .2s}
+.nav ul a:hover{color:var(--text)}
+.nav ul a[aria-current="page"]{color:var(--green);position:relative}
+.nav ul a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-21px;height:2px;
+  background:var(--green);border-radius:2px;box-shadow:0 0 10px rgba(48,208,144,.6)}
+.nav .gh{border:1px solid var(--line);padding:7px 14px;border-radius:9px;font-size:13.5px;color:var(--text);transition:.2s;white-space:nowrap}
+.nav .gh:hover{border-color:rgba(48,208,144,.6);color:var(--green)}
+/* 页头 */
+.page-head{padding:80px 0 26px}
+.crumb{font-size:12.5px;color:#6f7987;margin-bottom:22px}
+.crumb a:hover{color:var(--green)}
+.crumb span{margin:0 8px;opacity:.5}
+h1{font-size:clamp(36px,5.2vw,60px);line-height:1.06;letter-spacing:-.035em;font-weight:800;
+  background:linear-gradient(180deg,#ffffff 34%,#c9d4de 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);max-width:680px;font-size:16px;margin-top:20px}
+.meta-line{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:26px;font-size:12.8px;color:var(--muted)}
+.meta-line span{display:inline-flex;align-items:center;gap:7px}
+.meta-line span::before{content:"";width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.28)}
+.meta-line b{color:var(--text);font-weight:600}
+/* 通用 */
+section{padding:44px 0}
+.eyebrow{color:var(--green);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+h2{font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;font-weight:700}
+h3{font-size:16px;font-weight:650;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:14px;font-weight:600;
+  font-size:15.5px;transition:transform .22s var(--ease),box-shadow .22s,background .22s,border-color .22s;white-space:nowrap}
+.btn-main{background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;box-shadow:0 12px 32px rgba(48,208,144,.24)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(48,208,144,.34)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:rgba(48,208,144,.55);color:var(--green)}
+code{font-family:"Cascadia Code",Consolas,monospace;font-size:12.8px;color:var(--cyan);
+  background:rgba(80,224,208,.08);padding:3px 8px;border-radius:6px;word-break:break-all}
+pre{font-family:"Cascadia Code",Consolas,monospace;font-size:12.6px;color:var(--cyan);
+  background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:14px 16px;overflow-x:auto;line-height:1.7;margin-top:12px}
+/* 下载主卡 */
+.dlbox{border:1px solid rgba(48,208,144,.24);border-radius:var(--r-lg);padding:32px;
+  background:linear-gradient(180deg,rgba(48,208,144,.08),rgba(255,255,255,.02));margin-top:8px}
+.dlbox .row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.dlbox .fname{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.dlbox .sub{color:var(--muted);font-size:13.2px}
+.specs{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:12.6px;color:var(--muted)}
+.specs b{color:var(--text);font-weight:600}
+.hash{margin-top:16px;font-size:12.2px;color:#7c8695;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+.hash code{font-size:11.6px}
+/* 表格 */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015))}
+table{width:100%;border-collapse:collapse;font-size:13.8px;min-width:560px}
+caption{caption-side:top;text-align:left;padding:16px 20px 10px;color:var(--muted);font-size:12.6px}
+th,td{padding:13px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12.4px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  background:rgba(255,255,255,.03)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+tbody th{width:180px;color:var(--text);font-weight:600;white-space:nowrap}
+td{color:var(--muted)}
+td strong{color:var(--text);font-weight:600}
+/* 步骤 */
+.steps{list-style:none;counter-reset:s;display:grid;gap:12px}
+.steps li{counter-increment:s;position:relative;padding:18px 22px 18px 62px;border:1px solid var(--line);
+  border-radius:var(--r-md);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  font-size:14.2px;color:var(--muted);transition:border-color .24s}
+.steps li:hover{border-color:var(--line-2)}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:20px;top:17px;
+  font-family:"Cascadia Code",Consolas,monospace;font-size:12px;color:var(--green);
+  border:1px solid rgba(48,208,144,.28);background:rgba(48,208,144,.1);border-radius:7px;
+  width:28px;height:24px;display:grid;place-items:center}
+.steps li b{color:var(--text);font-weight:600}
+/* 问答 */
+details{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:border-color .25s,background .25s}
+details:hover{border-color:var(--line-2)}
+details[open]{border-color:rgba(48,208,144,.34);background:linear-gradient(180deg,rgba(48,208,144,.07),rgba(255,255,255,.02))}
+summary{list-style:none;cursor:pointer;padding:17px 56px 17px 22px;font-size:15px;font-weight:600;
+  position:relative;display:flex;align-items:center;gap:10px;min-height:56px}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--green)}
+summary .ind{margin-left:auto;position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  color:var(--muted);transition:transform .28s var(--ease);font-size:13px;line-height:1}
+details[open] summary .ind{transform:translateY(-50%) rotate(180deg);color:var(--green)}
+.ans{padding:0 22px 20px 22px;color:var(--muted);font-size:14px;line-height:1.85}
+.ans p+p{margin-top:10px}
+.ans strong{color:var(--text);font-weight:600}
+.ans a{color:var(--green);border-bottom:1px solid rgba(48,208,144,.35)}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+/* 提示条 */
+.note{border-left:2px solid var(--green);background:rgba(48,208,144,.06);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:14px 18px;font-size:13.4px;color:var(--muted);margin-top:16px}
+.note b{color:var(--text)}
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--muted);font-size:13px;margin-top:56px}
+footer .fnav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+footer .fnav a:hover{color:var(--green)}
+footer .fnav a[aria-current="page"]{color:var(--green)}
+.disc{max-width:780px;font-size:12.5px;line-height:1.85;color:#6f7987}
+@media(max-width:860px){
+.nav{gap:10px}
+  .nav ul{display:flex;gap:15px;overflow-x:auto;flex:1;min-width:0;justify-content:flex-start;flex-shrink:1;max-width:100%;mask-image:linear-gradient(to right,#000 86%,transparent);-webkit-mask-image:linear-gradient(to right,#000 86%,transparent)font-size:13.2px;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav ul::-webkit-scrollbar{display:none}
+  .nav ul a[aria-current="page"]::after{display:none}
+  .page-head{padding:56px 0 20px}
+  section{padding:34px 0}
+  .dlbox{padding:24px}
+  tbody th{width:auto;white-space:normal}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  .table-wrap table{font-size:12.8px}
+  .table-wrap th,.table-wrap td{padding:9px 10px}
+  summary{padding:15px 46px 15px 18px;font-size:14.4px}
+  .ans{padding:0 18px 18px 18px;font-size:13.6px}
+  .btn{width:100%;justify-content:center}
+  .steps li{padding:16px 18px 16px 56px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="favicon.png" alt="MCLQE">MCLQE</a>
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="download.html" aria-current="page">下载安装</a></li>
+      <li><a href="faq.html">常见问题</a></li>
+    </ul>
+    <a class="gh" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap page-head">
+    <nav class="crumb" aria-label="面包屑"><a href="index.html">首页</a><span>/</span>下载安装</nav>
+    <h1>下载与安装</h1>
+    <p class="lead">Windows 10 / 11 64 位，一个压缩包，解压就能启动。内置运行时，不需要另行安装 Java，也不需要管理员权限。</p>
+    <div class="meta-line">
+      <span>最新版本 <b>v1.0.0</b></span>
+      <span>包大小 <b>61.6 MB</b></span>
+      <span>授权 <b>GPL-3.0 免费开源</b></span>
+    </div>
+  </div>
+
+  <section class="wrap" aria-labelledby="dl-h">
+    <h2 id="dl-h" class="eyebrow" style="font-size:12.5px">Download</h2>
+    <div class="dlbox">
+      <div class="row">
+        <div>
+          <div class="fname">MCLQE-launcher-windows-x64.zip</div>
+          <div class="sub">适用于 Windows 10 / 11 64 位 · v1.0.0 · 免安装绿色版</div>
+        </div>
+        <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">↓ 下载 Windows 版</a>
+      </div>
+      <div class="specs">
+        <span>文件大小 <b>61.6 MB</b></span>
+        <span>内置运行时 <b>JavaFX + JDK 21</b></span>
+        <span>需要管理员 <b>否</b></span>
+        <span>更新方式 <b>下载新版覆盖</b></span>
+      </div>
+      <div class="hash">
+        <span>SHA256</span>
+        <code>1969c0b2b18ef902483e7cd136378c2767cbece8aa5c9cb2d2535a2404f20955</code>
+      </div>
+    </div>
+    <p class="note"><b>所有版本：</b>历史版本、更新日志与校验值见 <a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener" style="color:var(--green)">GitHub Releases</a>。下载后可对照本节末尾的方法核对哈希，确认文件完整。</p>
+  </section>
+
+  <section class="wrap" aria-labelledby="req-h">
+    <h2 id="req-h">系统要求</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>MCLQE v1.0.0 运行环境要求</caption>
+        <thead>
+          <tr><th scope="col">项目</th><th scope="col">要求</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">操作系统</th><td><strong>Windows 10 / Windows 11，64 位</strong>（不支持 32 位系统与 ARM 原生）</td></tr>
+          <tr><th scope="row">处理器</th><td>支持 SSE2 的 x64 处理器，双核及以上</td></tr>
+          <tr><th scope="row">内存</th><td>最低 4 GB，建议 <strong>8 GB 及以上</strong>（游戏内存另行分配，建议 2–6 GB）</td></tr>
+          <tr><th scope="row">磁盘空间</th><td>启动器本体约 61.6 MB；每个游戏版本连同资源约需 500 MB–1 GB</td></tr>
+          <tr><th scope="row">显卡</th><td>支持 OpenGL 3.2 及以上的显卡驱动（Minecraft 1.17+ 建议较新的驱动）</td></tr>
+          <tr><th scope="row">运行时</th><td><strong>已内置 JavaFX 与 Java 21 运行时，无需另行安装 Java</strong></td></tr>
+          <tr><th scope="row">自行指定 JDK</th><td>MC 1.16.5 及更早 → <strong>JDK 8</strong>；MC 1.17–1.20.4 → <strong>JDK 17</strong>；MC 1.20.5 / 1.21+ → <strong>JDK 21</strong></td></tr>
+          <tr><th scope="row">权限</th><td>普通用户即可，无需管理员权限，不写注册表</td></tr>
+          <tr><th scope="row">网络</th><td>首次安装版本、下载模组与登录时需要联网；离线模式可局域网/单机游玩</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="step-h">
+    <h2 id="step-h">下载与安装步骤</h2>
+    <ol class="steps">
+      <li><b>下载压缩包</b>：点上方「下载 Windows 版」按钮，获取 <code>MCLQE-launcher-windows-x64.zip</code>（约 61.6 MB）。</li>
+      <li><b>可选校验</b>：用 PowerShell 计算 SHA256，与上方值逐字符比对，一致再继续。</li>
+      <li><b>解压到固定目录</b>：右键解压到如 <code>D:\MCLQE</code>。建议非系统盘、路径不含特殊符号，便于备份与迁移。</li>
+      <li><b>双击启动</b>：进入解压目录，双击启动程序即可打开主界面。首次启动会创建配置目录并检测 Java 环境。</li>
+      <li><b>选择游戏目录</b>：默认目录为 <code>D:\MCLQE\MCLQE</code>，可在界面中切换或新增多个游戏目录。</li>
+      <li><b>登录并安装版本</b>：可用微软正版账号登录，或直接使用离线模式；随后在版本列表中选择游戏版本下载安装，必要时一键安装 Fabric / Quilt / Forge / NeoForge 加载器。</li>
+    </ol>
+  </section>
+
+  <section class="wrap" aria-labelledby="ver-h">
+    <h2 id="ver-h">校验与解压运行</h2>
+    <p class="lead" style="margin-top:0;margin-bottom:6px">下载完成后建议校验一次文件完整性，避免传输中断导致的解压失败。在文件所在目录打开 PowerShell：</p>
+    <pre>Get-FileHash .\MCLQE-launcher-windows-x64.zip -Algorithm SHA256</pre>
+    <p style="color:var(--muted);font-size:13.4px;margin-top:14px">输出应与下载页给出的 SHA256 完全一致。若不一致，删除文件重新下载。解压建议使用系统自带解压或 7-Zip，<strong style="color:var(--text)">不要在压缩包内直接双击运行</strong>；启动程序需与同目录的运行库文件保持相对位置，单独拷出 exe 会无法启动。</p>
+    <div class="note"><b>绿色软件：</b>删除目录即可完成卸载。存档与配置默认在游戏目录内，删除前请先备份 <code>saves</code> 文件夹。</div>
+  </section>
+
+  <section class="wrap" aria-labelledby="first-h">
+    <h2 id="first-h">首次启动注意事项</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>首次启动常见动作</caption>
+        <thead><tr><th scope="col">项目</th><th scope="col">说明</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Java 环境检测</th><td>启动前异步检测，缺失或版本不匹配会提示；选择「使用内置运行时」即可跳过单独安装 Java</td></tr>
+          <tr><th scope="row">游戏目录</th><td>默认 <code>D:\MCLQE\MCLQE</code>，可在设置中修改根目录，或通过 <code>-Dmclqe.storage.root</code> 启动参数覆盖</td></tr>
+          <tr><th scope="row">账号</th><td>微软正版登录走设备码流程，需在浏览器完成授权；离线账号无需联网</td></tr>
+          <tr><th scope="row">内存分配</th><td>默认值适用于多数机器；8 GB 内存建议 2048–3072 MB，16 GB 建议 4096–6144 MB</td></tr>
+          <tr><th scope="row">首次下载</th><td>首次安装游戏版本需下载资源文件，耗时取决于网速，请勿中途关闭窗口</td></tr>
+          <tr><th scope="row">安全软件</th><td>未签名的新程序可能被 SmartScreen 提示，选择「更多信息 → 仍要运行」；也可先用哈希自行校验</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="prob-h">
+    <h2 id="prob-h">常见安装问题</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>双击后没有反应，或窗口一闪就消失<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>多数情况是只复制了启动程序、丢掉了同目录的运行库文件。请确认<strong>整个压缩包已完整解压</strong>，并在解压目录内启动。若仍无反应，查看同目录的日志文件，或以命令行运行启动程序查看报错信息。</p>
+        </div>
+      </details>
+      <details>
+        <summary>提示缺少 Java / 找不到运行时<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>压缩包已内置运行时不需额外安装。若你手动指定了 JDK，请按系统要求表核对版本：1.16.5 及更早用 JDK 8，1.17–1.20.4 用 JDK 17，1.20.5 / 1.21+ 用 JDK 21。也可在设置中改回「使用内置运行时」。</p>
+        </div>
+      </details>
+      <details>
+        <summary>解压或启动时提示路径错误<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>把程序放在<strong>纯英文路径</strong>下，例如 <code>D:\MCLQE</code>，避免中文、空格与过深层级；同时确认该目录有写入权限（不要放在 <code>C:\Program Files</code> 下）。</p>
+        </div>
+      </details>
+      <details>
+        <summary>被杀毒软件拦截或提示有风险<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>未签名的开源程序常被启发式误报。请从<strong>本站按钮或官方 GitHub Releases</strong> 下载，并用 SHA256 校验；确认一致后加入信任列表即可。来源不明的二次打包版本不要运行。</p>
+        </div>
+      </details>
+      <details>
+        <summary>游戏版本或模组下载很慢<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>游戏本体资源来自 Mojang 官方源，模组来自 Modrinth 官方接口，速度受网络线路影响。可换时段重试；已下载完成的文件会复用，不会重复拉取。</p>
+        </div>
+      </details>
+      <details>
+        <summary>如何更新到新版本<span class="ind" aria-hidden="true">▾</span></summary>
+        <div class="ans">
+          <p>下载新版压缩包，解压后<strong>覆盖到原目录</strong>即可；存档、模组与配置都在游戏目录中，不在启动器目录内，不会被覆盖。更新前建议先备份游戏目录。</p>
+        </div>
+      </details>
+    </div>
+    <p style="color:var(--muted);font-size:13.4px;margin-top:18px">更多疑问见 <a href="faq.html" style="color:var(--green)">常见问题</a>，或到 <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener" style="color:var(--green)">GitHub Issues</a> 反馈。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnav">
+      <a href="index.html">首页</a>
+      <a href="download.html" aria-current="page">下载安装</a>
+      <a href="faq.html">常见问题</a>
+      <a href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/yezi-fak/MCLQE/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/yezi-fak/MCLQE/issues" target="_blank" rel="noopener">问题反馈</a>
+      <a href="https://github.com/yezi-fak/MCLQE/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a>
+    </div>
+    <p class="disc">MCLQE 为非官方开源项目，与 Mojang Studios、Microsoft 及网易均无任何关联，不包含任何游戏本体文件，启动时需你自行拥有正版账号或使用离线模式。Minecraft 是 Mojang Studios 的商标。</p>
+  </div>
+</footer>
+</body>
+</html>
