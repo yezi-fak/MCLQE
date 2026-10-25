@@ -38,171 +38,397 @@
   --bg:#0b0e14;
   --bg-2:#101020;
   --panel:rgba(255,255,255,.04);
+  --panel-2:rgba(255,255,255,.06);
   --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.14);
   --text:#f0f0f0;
   --muted:#9aa4b2;
   --green:#30d090;
   --cyan:#50e0d0;
+  --r-lg:22px;
+  --r-md:16px;
+  --r-sm:11px;
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:"Segoe UI","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",system-ui,"Helvetica Neue",Arial,sans-serif;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:16px;top:12px;z-index:99;background:#0d1420;border:1px solid var(--line);padding:10px 16px;border-radius:10px}
 /* 背景光晕 */
 body::before{
-  content:"";position:fixed;inset:0;z-index:-1;
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(620px 420px at 12% 8%, rgba(48,208,144,.16), transparent 65%),
-    radial-gradient(560px 400px at 88% 4%, rgba(80,224,208,.12), transparent 65%),
-    radial-gradient(800px 600px at 50% 100%, rgba(48,208,144,.07), transparent 70%);
+    radial-gradient(760px 520px at 14% -2%, rgba(48,208,144,.15), transparent 62%),
+    radial-gradient(680px 460px at 88% 2%, rgba(80,224,208,.11), transparent 64%),
+    radial-gradient(900px 640px at 50% 108%, rgba(48,208,144,.06), transparent 70%);
 }
 /* 导航 */
-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.5px}
-.brand img{width:30px;height:30px;border-radius:8px}
-.nav ul{display:flex;gap:26px;list-style:none;font-size:14.5px;color:var(--muted)}
-.nav ul a:hover{color:var(--green)}
-.nav .gh{border:1px solid var(--line);padding:7px 14px;border-radius:9px;font-size:14px;color:var(--text);transition:.2s}
-.nav .gh:hover{border-color:var(--green);color:var(--green)}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.4px;font-size:15.5px}
+.brand img{width:28px;height:28px;border-radius:8px}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:14.5px;color:var(--muted)}
+.nav ul a{transition:color .2s}
+.nav ul a:hover{color:var(--text)}
+.nav .gh{border:1px solid var(--line);padding:7px 14px;border-radius:9px;font-size:13.5px;color:var(--text);transition:.2s;white-space:nowrap}
+.nav .gh:hover{border-color:rgba(48,208,144,.6);color:var(--green)}
 /* 首屏 */
-.hero{padding:92px 0 72px;text-align:center}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--green);
-  border:1px solid rgba(48,208,144,.34);background:rgba(48,208,144,.08);
-  padding:5px 13px;border-radius:999px;margin-bottom:26px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-.hero img.logo{width:104px;height:104px;border-radius:24px;margin-bottom:26px;
-  box-shadow:0 18px 50px rgba(48,208,144,.24)}
-h1{font-size:60px;line-height:1.05;letter-spacing:-2px;font-weight:800;
-  background:linear-gradient(120deg,#fff 20%,var(--green) 60%,var(--cyan) 95%);
+.hero{padding:108px 0 0;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--green);
+  border:1px solid rgba(48,208,144,.3);background:rgba(48,208,144,.07);
+  padding:6px 14px;border-radius:999px;margin-bottom:30px;letter-spacing:.2px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);flex:none}
+h1{font-size:clamp(54px,9vw,104px);line-height:1.02;letter-spacing:-.045em;font-weight:800;
+  background:linear-gradient(180deg,#ffffff 34%,#c9d4de 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:var(--muted);font-size:18px;margin:18px auto 0;max-width:620px}
-.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:15.5px;transition:.22s}
-.btn-main{background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;
-  box-shadow:0 12px 32px rgba(48,208,144,.28)}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(48,208,144,.38)}
-.btn-ghost{border:1px solid var(--line);color:var(--text)}
-.btn-ghost:hover{border-color:var(--green);color:var(--green)}
-.meta{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px;font-size:13.5px;color:var(--muted)}
+.hero-sub{color:var(--muted);font-size:clamp(16px,1.6vw,19px);margin:24px auto 0;max-width:640px;line-height:1.7}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:14px;font-weight:600;
+  font-size:15.5px;transition:transform .22s var(--ease),box-shadow .22s,background .22s,border-color .22s;white-space:nowrap}
+.btn-main{background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;box-shadow:0 12px 32px rgba(48,208,144,.24)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(48,208,144,.34)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:rgba(48,208,144,.55);color:var(--green)}
+.meta{display:flex;gap:10px 26px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-size:13px;color:var(--muted)}
 .meta b{color:var(--text);font-weight:600}
-/* 通用段落 */
-section{padding:74px 0}
-.eyebrow{color:var(--green);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
-h2{font-size:34px;letter-spacing:-.8px;margin-bottom:14px}
-.lead{color:var(--muted);max-width:640px}
+.meta span{display:inline-flex;align-items:center;gap:6px}
+.meta span::before{content:"";width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.28)}
+/* 首屏产品截图 */
+.hero-visual{padding:58px 24px 0;max-width:1000px;margin:0 auto}
+.shot{position:relative;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:#0d1420;box-shadow:0 46px 110px rgba(0,0,0,.68),0 0 0 1px rgba(255,255,255,.03) inset;
+  transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.shot img{display:block;width:100%;height:auto}
+.shot::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(11,14,20,0) 62%,rgba(11,14,20,.5) 100%)}
+/* 段落 */
+section{padding:96px 0}
+.eyebrow{color:var(--green);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;font-weight:700}
+.lead{color:var(--muted);max-width:660px;font-size:16px}
 /* 功能卡 */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 22px;transition:.25s}
-.card:hover{border-color:rgba(48,208,144,.45);transform:translateY(-3px);background:rgba(48,208,144,.05)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:var(--r-md);padding:26px 24px;transition:.3s var(--ease)}
+.card:hover{border-color:rgba(48,208,144,.4);transform:translateY(-3px);background:linear-gradient(180deg,rgba(48,208,144,.07),rgba(255,255,255,.02))}
 .card .ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
-  background:rgba(48,208,144,.13);color:var(--green);font-size:18px;margin-bottom:16px}
-.card h3{font-size:16.5px;margin-bottom:8px}
-.card p{color:var(--muted);font-size:14px}
-/* 截图 */
-.shot{border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:38px;
-  background:#0d1420;box-shadow:0 30px 70px rgba(0,0,0,.55)}
-.shot img{width:100%;height:auto;display:block}
+  background:rgba(48,208,144,.12);color:var(--green);font-size:17px;margin-bottom:18px;border:1px solid rgba(48,208,144,.16)}
+.card h3{font-size:16px;margin-bottom:8px;font-weight:650;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:13.8px;line-height:1.7}
+/* ============ 启动器交互演示 ============ */
+.demo{padding-top:20px}
+.demo-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.demo-hint{font-size:13px;color:var(--muted);border:1px dashed rgba(255,255,255,.16);padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.02)}
+.demo-hint b{color:var(--green);font-weight:600}
+.launcher{margin-top:40px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(180deg,#0d131d 0%,#0a0d13 100%);
+  box-shadow:0 50px 110px rgba(0,0,0,.62),0 0 0 1px rgba(48,208,144,.05);
+  position:relative;isolation:isolate}
+.launcher:focus-within{border-color:rgba(48,208,144,.28)}
+/* 标题栏 */
+.l-bar{display:flex;align-items:center;gap:14px;padding:11px 16px;border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.028)}
+.l-dots{display:flex;gap:7px;flex:none}
+.l-dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.16);display:block}
+.l-dots i:nth-child(1){background:#ff5f57}.l-dots i:nth-child(2){background:#febc2e}.l-dots i:nth-child(3){background:#28c840}
+.l-title{font-size:12.5px;color:var(--muted);letter-spacing:.02em;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 版本下拉 */
+.dd{position:relative;flex:none;margin-left:auto}
+.dd-btn{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-family:inherit;color:var(--text);
+  background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:9px;padding:7px 11px;cursor:pointer;
+  transition:.2s;min-height:32px}
+.dd-btn:hover{border-color:var(--line-2);background:rgba(255,255,255,.08)}
+.dd-btn[aria-expanded="true"]{border-color:rgba(48,208,144,.5);color:var(--green)}
+.dd-btn .caret{font-size:9px;color:var(--muted);transition:transform .22s var(--ease)}
+.dd-btn[aria-expanded="true"] .caret{transform:rotate(180deg)}
+.dd-list{position:absolute;right:0;top:calc(100% + 8px);width:264px;z-index:30;padding:6px;
+  background:#111826;border:1px solid var(--line-2);border-radius:13px;
+  box-shadow:0 24px 60px rgba(0,0,0,.66);opacity:0;transform:translateY(-6px) scale(.985);
+  pointer-events:none;transition:.2s var(--ease);max-height:280px;overflow:auto}
+.dd-list.is-open{opacity:1;transform:none;pointer-events:auto}
+.dd-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-family:inherit;
+  background:none;border:0;color:var(--text);font-size:13px;padding:9px 10px;border-radius:8px;cursor:pointer}
+.dd-opt:hover,.dd-opt:focus-visible{background:rgba(255,255,255,.06)}
+.dd-opt[aria-selected="true"]{background:rgba(48,208,144,.12);color:var(--green)}
+.dd-opt .tagx{margin-left:auto;font-size:11px;color:var(--muted);border:1px solid var(--line);padding:1px 7px;border-radius:999px}
+.dd-opt[aria-selected="true"] .tagx{color:var(--green);border-color:rgba(48,208,144,.4)}
+/* 主体 */
+.l-body{display:grid;grid-template-columns:190px 1fr;min-height:392px}
+.l-nav{display:flex;flex-direction:column;gap:4px;padding:14px 10px;border-right:1px solid var(--line);background:rgba(255,255,255,.015)}
+.l-nav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;
+  background:none;border:1px solid transparent;color:var(--muted);font-family:inherit;font-size:13.5px;
+  padding:10px 12px;border-radius:10px;transition:.18s;min-height:42px;position:relative}
+.l-nav button:hover{background:rgba(255,255,255,.045);color:var(--text)}
+.l-nav button[aria-selected="true"]{background:rgba(48,208,144,.17);color:var(--green);border-color:rgba(48,208,144,.4);font-weight:600}
+.l-nav button[aria-selected="true"]::before{content:"";position:absolute;left:-10px;top:9px;bottom:9px;width:2px;border-radius:2px;background:var(--green)}
+.l-nav .ni{width:18px;text-align:center;font-size:14px;flex:none;opacity:.9}
+.l-nav .nv{margin-left:auto;font-size:11px;color:var(--muted);background:rgba(255,255,255,.07);border-radius:999px;padding:1px 7px}
+.l-nav button[aria-selected="true"] .nv{color:var(--green);background:rgba(48,208,144,.16)}
+.l-panels{padding:22px 24px 24px;min-width:0}
+.l-panel{display:none}
+.l-panel.is-active{display:block;animation:panelIn .3s var(--ease) both}
+@keyframes panelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.p-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;font-weight:650;letter-spacing:-.01em}
+.p-head .p-sub{font-size:12px;color:var(--muted)}
+/* 首页 */
+.hello{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.hello-sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+.recent{border:1px solid rgba(48,208,144,.24);border-radius:14px;padding:16px 18px;
+  background:linear-gradient(135deg,rgba(48,208,144,.1),rgba(80,224,208,.04));margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.recent .rn{font-size:14.5px;font-weight:650}
+.recent .rd{font-size:12px;color:var(--muted);margin-top:3px}
+.chip{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(48,208,144,.36);
+  color:var(--green);background:rgba(48,208,144,.1);white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.025)}
+.stat b{display:block;font-size:18px;font-weight:700;letter-spacing:-.02em}
+.stat span{font-size:11.5px;color:var(--muted)}
+/* 版本列表 */
+.vlist{display:flex;flex-direction:column;gap:8px}
+.vrow{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;
+  border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.022);
+  cursor:pointer;transition:.2s;text-align:left;font-family:inherit;color:var(--text);min-height:58px}
+.vrow:hover{background:rgba(255,255,255,.05);border-color:var(--line-2)}
+.vrow.is-sel{border-color:rgba(48,208,144,.55);background:rgba(48,208,144,.09)}
+.vrow .vn{font-size:13.8px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vrow .vp{font-size:11px;color:#6f7987;font-family:"Cascadia Code",Consolas,monospace;
+  grid-column:1/2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vrow .vls{grid-row:1/3;grid-column:2/3;font-size:11px;color:var(--muted);border:1px solid var(--line);
+  padding:3px 9px;border-radius:999px;white-space:nowrap}
+.vrow.is-sel .vls{color:var(--green);border-color:rgba(48,208,144,.4)}
+/* 模组列表 */
+.mrow{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;
+  padding:11px 14px;margin-bottom:8px;background:rgba(255,255,255,.022)}
+.mrow .mi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:12px;
+  background:rgba(80,224,208,.1);color:var(--cyan);flex:none;border:1px solid rgba(80,224,208,.16)}
+.mrow .mn{font-size:13.5px;font-weight:600;line-height:1.35}
+.mrow .md{font-size:11.5px;color:var(--muted)}
+.mrow .mx{margin-left:auto;flex:none}
+.sw{width:40px;height:22px;border-radius:999px;background:rgba(255,255,255,.13);border:0;position:relative;
+  cursor:pointer;transition:.22s;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;
+  background:#fff;transition:.22s var(--ease);box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.sw[aria-checked="true"]{background:var(--green)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+/* 设置 */
+.srow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.srow:last-child{border-bottom:0}
+.srow .sk{font-size:13.2px;min-width:104px;color:var(--text)}
+.srow .sv{font-size:12px;color:var(--muted);margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mono{font-family:"Cascadia Code",Consolas,monospace;font-size:11.8px;color:var(--cyan);
+  background:rgba(80,224,208,.08);padding:3px 8px;border-radius:6px;word-break:break-all}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:999px;
+  background:linear-gradient(90deg,var(--green) 0%,var(--green) var(--p,50%),rgba(255,255,255,.14) var(--p,50%));
+  outline-offset:6px;cursor:pointer}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;
+  background:#fff;border:2px solid var(--green);box-shadow:0 2px 6px rgba(0,0,0,.5);cursor:pointer}
+input[type="range"]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--green)}
+/* 底部操作栏 */
+.l-foot{display:flex;align-items:center;gap:16px;padding:13px 16px;border-top:1px solid var(--line);
+  background:rgba(255,255,255,.028);flex-wrap:wrap}
+.l-java{display:flex;align-items:center;gap:8px;font-size:12.2px;color:var(--muted);flex:none}
+.l-java b{color:var(--text);font-weight:600}
+.l-java .dot.detecting{background:#febc2e;box-shadow:0 0 10px #febc2e;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.l-link{background:none;border:0;color:var(--muted);font-family:inherit;font-size:11.5px;cursor:pointer;
+  text-decoration:underline;text-underline-offset:3px;padding:4px 2px}
+.l-link:hover{color:var(--green)}
+.l-prog{position:relative;flex:1;min-width:120px;height:6px;border-radius:999px;
+  background:rgba(255,255,255,.09);overflow:hidden;opacity:0;transition:opacity .3s}
+.l-prog.is-active{opacity:1}
+.l-prog span{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .32s linear}
+.l-status{font-size:11.8px;color:var(--muted);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  opacity:0;transition:opacity .3s}
+.l-status.is-active{opacity:1}
+.l-play{margin-left:auto;display:inline-flex;align-items:center;gap:9px;flex:none;
+  background:linear-gradient(135deg,var(--green),var(--cyan));color:#04120c;border:0;font-family:inherit;
+  font-weight:700;font-size:14px;padding:11px 26px;border-radius:12px;cursor:pointer;min-height:44px;
+  transition:transform .2s var(--ease),box-shadow .2s,filter .2s;box-shadow:0 10px 26px rgba(48,208,144,.24)}
+.l-play:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 14px 34px rgba(48,208,144,.34)}
+.l-play:disabled{cursor:progress;filter:saturate(.6) brightness(.92);box-shadow:none}
+.l-play .spin{width:13px;height:13px;border-radius:50%;border:2px solid rgba(4,18,12,.28);
+  border-top-color:#04120c;animation:spin .7s linear infinite;display:none}
+.l-play.is-busy .spin{display:inline-block}
+.l-play.is-busy .arrow{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* 完成态提示 */
+.l-toast{position:absolute;left:50%;bottom:76px;transform:translate(-50%,10px);z-index:20;
+  display:flex;align-items:center;gap:10px;font-size:12.8px;color:var(--text);
+  background:rgba(15,24,22,.96);border:1px solid rgba(48,208,144,.45);border-radius:12px;
+  padding:10px 16px;box-shadow:0 18px 44px rgba(0,0,0,.6);opacity:0;pointer-events:none;
+  transition:.34s var(--ease);white-space:nowrap;max-width:calc(100% - 32px)}
+.l-toast.show{opacity:1;transform:translate(-50%,0)}
+.l-toast .ok{color:var(--green);font-weight:700}
+/* 脚注 */
+.demo-note{margin-top:16px;font-size:12.2px;color:#6f7987}
 /* 下载 */
-.dl{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;margin-top:38px}
+.dl{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  border:1px solid var(--line);border-radius:var(--r-lg);padding:8px 28px;margin-top:40px}
 .dl-row{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
   padding:16px 0;border-bottom:1px solid var(--line)}
 .dl-row:last-child{border-bottom:0}
-.dl-row .k{color:var(--muted);font-size:14px;min-width:120px}
-.dl-row .v{font-size:14.5px;word-break:break-all;text-align:right;flex:1}
-code{font-family:"Cascadia Code",Consolas,monospace;font-size:12.8px;color:var(--cyan);
+.dl-row .k{color:var(--muted);font-size:13.5px;min-width:104px}
+.dl-row .v{font-size:14px;word-break:break-all;text-align:right;flex:1}
+code{font-family:"Cascadia Code",Consolas,monospace;font-size:12.5px;color:var(--cyan);
   background:rgba(80,224,208,.08);padding:3px 8px;border-radius:6px}
 /* 页脚 */
-footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:13.5px}
-footer .fnav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--muted);font-size:13px}
+footer .fnav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:18px}
 footer .fnav a:hover{color:var(--green)}
-.disc{max-width:760px;font-size:12.8px;line-height:1.8;color:#6f7987}
+.disc{max-width:780px;font-size:12.5px;line-height:1.85;color:#6f7987}
+/* 滚动揭示 */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+/* 响应式 */
 @media(max-width:860px){
   .grid{grid-template-columns:1fr 1fr}
-  h1{font-size:42px}
   .nav ul{display:none}
-  .hero{padding:64px 0 48px}
+  .hero{padding-top:76px}
+  section{padding:72px 0}
+}
+@media(max-width:768px){
+  .wrap{padding:0 18px}
+  .l-body{grid-template-columns:1fr}
+  .l-nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);
+    padding:10px;gap:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .l-nav::-webkit-scrollbar{display:none}
+  .l-nav button{width:auto;flex:1 1 0;min-width:0;justify-content:center;padding:9px 8px;font-size:12.8px;min-height:40px}
+  .l-nav button[aria-selected="true"]::before{left:10px;right:10px;top:auto;bottom:2px;width:auto;height:2px}
+  .l-nav .nv{display:none}
+  .l-panels{padding:18px 16px 20px}
+  .l-title{display:none}
+  .l-foot{gap:10px;padding:12px 14px}
+  .l-play{width:100%;justify-content:center;margin-left:0}
+  .l-prog{order:3;flex-basis:100%}
+  .l-status{order:4;flex-basis:100%;opacity:0;height:0;overflow:hidden}
+  .l-status.is-active{opacity:1;height:auto}
+  .dd-list{width:236px}
+  .stats{grid-template-columns:1fr 1fr}
+  .hero-visual{padding:40px 18px 0}
+  .dl{padding:4px 18px}
+  .dl-row .v{text-align:left}
+  .l-toast{bottom:118px;font-size:12px;white-space:normal;text-align:center}
+  input[type="range"]{width:120px}
 }
 @media(max-width:560px){
   .grid{grid-template-columns:1fr}
-  h1{font-size:34px}
-  section{padding:52px 0}
+  .actions .btn{width:100%;justify-content:center}
+  .demo-hint{width:100%;font-size:12.4px}
+  .vrow{grid-template-columns:1fr}
+  .vrow .vls{grid-row:auto;grid-column:1/2;justify-self:start}
+  .vrow .vp{max-width:100%}
+}
+@media(max-width:420px){
+  .l-nav{gap:4px;padding:9px 8px}
+  .l-nav button{font-size:11.6px;gap:5px;padding:9px 3px;letter-spacing:-.2px}
+  .l-nav .ni{width:14px;font-size:12px}
+  .l-nav button[aria-selected="true"]::before{left:6px;right:6px}
+}
+@media(hover:none){
+  .l-nav button{min-height:44px}
+  .dd-btn{min-height:38px;padding:8px 12px}
+  .vrow{min-height:64px}
+  .sw{width:44px;height:24px}
+  .sw::after{width:18px;height:18px}
+  .sw[aria-checked="true"]::after{transform:translateX(20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  .shot{transform:none!important}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">跳到主要内容</a>
 
 <header>
   <div class="wrap nav">
     <div class="brand"><img src="favicon.png" alt="MCLQE">MCLQE</div>
     <ul>
       <li><a href="#features">功能</a></li>
-      <li><a href="#preview">预览</a></li>
+      <li><a href="#demo">界面演示</a></li>
       <li><a href="#download">下载</a></li>
     </ul>
     <a class="gh" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </header>
 
-<main>
-  <section class="hero wrap">
-    <div class="tag"><span class="dot"></span>开源免费 · GPL-3.0</div>
-    <img class="logo" src="favicon.png" alt="MCLQE 图标">
-    <h1>MCLQE</h1>
-    <p class="sub">基于 Java 21 + JavaFX 的 Minecraft Java 版启动器。多版本管理、模组与加载器一键安装、微软正版登录，深色界面开箱即用。</p>
-    <div class="actions">
-      <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">
-        ↓ 下载 Windows 版
-      </a>
-      <a class="btn btn-ghost" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener">查看源码</a>
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <div class="pill"><span class="dot"></span>开源免费 · GPL-3.0</div>
+      <h1>MCLQE</h1>
+      <p class="hero-sub">基于 Java 21 + JavaFX 的 Minecraft Java 版启动器。多版本管理、模组与加载器一键安装、微软正版登录，深色界面开箱即用。</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">↓ 下载 Windows 版</a>
+        <a class="btn btn-ghost" href="https://github.com/yezi-fak/MCLQE" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="margin-right:8px;vertical-align:-3px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>在 GitHub 上查看源码</a>
+      </div>
+      <div class="meta">
+        <span>最新版本 <b id="ver">v1.0.0</b></span>
+        <span>下载量 <b id="dlcount">—</b></span>
+        <span>Star <b id="stars">—</b></span>
+        <span>Windows 10/11 x64 · <b>免安装 Java</b></span>
+      </div>
     </div>
-    <div class="meta">
-      <span>最新版本 <b id="ver">v1.0.0</b></span>
-      <span>下载量 <b id="dlcount">—</b></span>
-      <span>Star <b id="stars">—</b></span>
-      <span>Windows 10/11 x64 · <b>免安装 Java</b></span>
+    <div class="hero-visual">
+      <div class="shot" id="heroShot">
+        <img src="screenshots/mclqe-home.png" alt="MCLQE 启动器主界面截图" width="1040" height="720">
+      </div>
     </div>
   </section>
 
   <section id="features" class="wrap">
-    <div class="eyebrow">Features</div>
-    <h2>该有的都有，不该有的没有</h2>
-    <p class="lead">只做启动器该做的事：把版本、模组、加载器和账号管好，界面保持干净。</p>
+    <div class="reveal">
+      <div class="eyebrow">Features</div>
+      <h2>该有的都有，不该有的没有</h2>
+      <p class="lead">只做启动器该做的事：把版本、模组、加载器和账号管好，界面保持干净。</p>
+    </div>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">▣</div>
         <h3>多实例与版本管理</h3>
         <p>独立游戏目录、多版本并存，切换版本不改动已有存档与配置。</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">↓</div>
         <h3>Modrinth 模组直装</h3>
         <p>内置搜索与依赖解析，选中即装，支持镜像源，无需手动搬运 jar。</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">⚙</div>
         <h3>加载器一键部署</h3>
         <p>Fabric、Quilt、Forge、NeoForge 版本列表实时拉取，按所选游戏版本自动匹配安装。</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">◎</div>
         <h3>微软正版登录</h3>
         <p>走标准 OAuth 设备码流程，同时支持离线模式，账号数据本地保存。</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">☕</div>
         <h3>Java 自动识别</h3>
         <p>按游戏版本判断所需 Java 版本，缺失时直接引导下载适配的运行时。</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="ico">◐</div>
         <h3>深色原生界面</h3>
         <p>JavaFX 原生绘制，无内嵌浏览器内核，启动快、内存占用低。</p>
@@ -210,21 +436,171 @@ footer .fnav a:hover{color:var(--green)}
     </div>
   </section>
 
-  <section id="preview" class="wrap">
-    <div class="eyebrow">Preview</div>
-    <h2>界面预览</h2>
-    <p class="lead">全部功能在同一套深色主题下展开，左边的实例列表到了右边就是可操作的版本卡片。</p>
-    <div class="shot"><img src="screenshots/mclqe-home.png" alt="MCLQE 主界面截图" loading="lazy"></div>
+  <section id="demo" class="wrap demo">
+    <div class="demo-head reveal">
+      <div>
+        <div class="eyebrow">Interface Demo</div>
+        <h2>摸得到的界面</h2>
+        <p class="lead">下面不是截图，是用 HTML/CSS/JS 按启动器真实界面结构做的可交互演示，可以直接操作。</p>
+      </div>
+      <p class="demo-hint">试着点点：<b>左侧导航</b>切换面板 · <b>右上角</b>展开版本下拉 · 底部按 <b>开始游戏</b></p>
+    </div>
+
+    <div class="launcher reveal" id="launcher" aria-label="MCLQE 启动器交互演示">
+      <div class="l-bar">
+        <div class="l-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="l-title">MCLQE Launcher</div>
+        <div class="dd">
+          <button class="dd-btn" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ddList" aria-label="选择游戏版本，当前 1.20.1 Fabric">
+            <span id="ddLabel">1.20.1 · Fabric</span><span class="caret" aria-hidden="true">▼</span>
+          </button>
+          <div class="dd-list" id="ddList" role="listbox" aria-label="版本列表" tabindex="-1">
+            <button class="dd-opt" type="button" role="option" aria-selected="true" data-v="1.20.1 · Fabric" data-key="1.20.1-fabric">1.20.1 <span class="tagx">Fabric</span></button>
+            <button class="dd-opt" type="button" role="option" aria-selected="false" data-v="1.20.1 · 原版" data-key="1.20.1-vanilla">1.20.1 <span class="tagx">原版</span></button>
+            <button class="dd-opt" type="button" role="option" aria-selected="false" data-v="1.19.4 · Forge" data-key="1.19.4-forge">1.19.4 <span class="tagx">Forge</span></button>
+            <button class="dd-opt" type="button" role="option" aria-selected="false" data-v="1.21 · NeoForge" data-key="1.21-neoforge">1.21 <span class="tagx">NeoForge</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-body">
+        <nav class="l-nav" role="tablist" aria-label="启动器导航" aria-orientation="vertical">
+          <button class="l-tab" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0"><span class="ni" aria-hidden="true">⌂</span>首页</button>
+          <button class="l-tab" id="tab-vers" type="button" role="tab" aria-selected="false" aria-controls="panel-vers" tabindex="-1"><span class="ni" aria-hidden="true">▤</span>版本<span class="nv">4</span></button>
+          <button class="l-tab" id="tab-mods" type="button" role="tab" aria-selected="false" aria-controls="panel-mods" tabindex="-1"><span class="ni" aria-hidden="true">▧</span>模组<span class="nv" id="modCount">4</span></button>
+          <button class="l-tab" id="tab-set" type="button" role="tab" aria-selected="false" aria-controls="panel-set" tabindex="-1"><span class="ni" aria-hidden="true">⚙</span>设置</button>
+        </nav>
+
+        <div class="l-panels">
+          <div class="l-panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
+            <div class="hello">欢迎回来</div>
+            <p class="hello-sub">游戏目录：D:\MCLQE\MCLQE · Java 21.0.2</p>
+            <div class="recent">
+              <div>
+                <div class="rn" id="recentName">1.20.1 · Fabric</div>
+                <div class="rd">上次启动 3 小时前 · <span id="recentMods">3 个模组已启用</span></div>
+              </div>
+              <span class="chip">最近使用</span>
+            </div>
+            <div class="stats">
+              <div class="stat"><b>4</b><span>已安装版本</span></div>
+              <div class="stat"><b id="statMods">3</b><span>已启用模组</span></div>
+              <div class="stat"><b id="statMem">4096</b><span>内存上限 MB</span></div>
+            </div>
+          </div>
+
+          <div class="l-panel" id="panel-vers" role="tabpanel" aria-labelledby="tab-vers" tabindex="0">
+            <div class="p-head">
+              <h3>版本列表</h3>
+              <span class="p-sub">点击一行即可选为启动目标</span>
+            </div>
+            <div class="vlist" id="vlist" role="radiogroup" aria-label="选择启动版本">
+              <button class="vrow is-sel" type="button" role="radio" aria-checked="true" data-key="1.20.1-fabric" data-v="1.20.1 · Fabric">
+                <span class="vn">1.20.1 <span class="chip">Fabric 0.15.11</span></span>
+                <span class="vls">已选中</span>
+                <span class="vp">versions\1.20.1-fabric</span>
+              </button>
+              <button class="vrow" type="button" role="radio" aria-checked="false" data-key="1.20.1-vanilla" data-v="1.20.1 · 原版">
+                <span class="vn">1.20.1 <span class="chip" style="color:var(--muted);border-color:var(--line);background:rgba(255,255,255,.05)">原版</span></span>
+                <span class="vls">已安装</span>
+                <span class="vp">versions\1.20.1</span>
+              </button>
+              <button class="vrow" type="button" role="radio" aria-checked="false" data-key="1.19.4-forge" data-v="1.19.4 · Forge">
+                <span class="vn">1.19.4 <span class="chip" style="color:var(--muted);border-color:var(--line);background:rgba(255,255,255,.05)">Forge 45.1.0</span></span>
+                <span class="vls">已安装</span>
+                <span class="vp">versions\1.19.4-forge</span>
+              </button>
+              <button class="vrow" type="button" role="radio" aria-checked="false" data-key="1.21-neoforge" data-v="1.21 · NeoForge">
+                <span class="vn">1.21 <span class="chip" style="color:var(--muted);border-color:var(--line);background:rgba(255,255,255,.05)">NeoForge 21.0.143</span></span>
+                <span class="vls">已安装</span>
+                <span class="vp">versions\1.21-neoforge</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="l-panel" id="panel-mods" role="tabpanel" aria-labelledby="tab-mods" tabindex="0">
+            <div class="p-head">
+              <h3>已安装模组</h3>
+              <span class="p-sub">来源 Modrinth · 开关即时生效</span>
+            </div>
+            <div class="mrow">
+              <div class="mi" aria-hidden="true">Na</div>
+              <div><div class="mn">Sodium</div><div class="md">0.5.8 · 渲染优化</div></div>
+              <div class="mx"><button class="sw" type="button" role="switch" aria-checked="true" aria-label="启用 Sodium"></button></div>
+            </div>
+            <div class="mrow">
+              <div class="mi" aria-hidden="true">Ir</div>
+              <div><div class="mn">Iris Shaders</div><div class="md">1.7.0 · 光影支持</div></div>
+              <div class="mx"><button class="sw" type="button" role="switch" aria-checked="true" aria-label="启用 Iris Shaders"></button></div>
+            </div>
+            <div class="mrow">
+              <div class="mi" aria-hidden="true">Li</div>
+              <div><div class="mn">Lithium</div><div class="md">0.12.1 · 性能优化</div></div>
+              <div class="mx"><button class="sw" type="button" role="switch" aria-checked="true" aria-label="启用 Lithium"></button></div>
+            </div>
+            <div class="mrow">
+              <div class="mi" aria-hidden="true">Xa</div>
+              <div><div class="mn">Xaero's Minimap</div><div class="md">24.1.0 · 小地图</div></div>
+              <div class="mx"><button class="sw" type="button" role="switch" aria-checked="false" aria-label="启用 Xaero's Minimap"></button></div>
+            </div>
+          </div>
+
+          <div class="l-panel" id="panel-set" role="tabpanel" aria-labelledby="tab-set" tabindex="0">
+            <div class="p-head"><h3>设置</h3><span class="p-sub">改动即时保存于本地</span></div>
+            <div class="srow">
+              <span class="sk">游戏目录</span>
+              <span class="sv"><span class="mono">D:\MCLQE\MCLQE</span></span>
+            </div>
+            <div class="srow">
+              <span class="sk">内存上限</span>
+              <span class="sv">
+                <input type="range" id="memRange" min="1024" max="8192" step="512" value="4096" aria-label="内存上限（MB）">
+                <span id="memVal" class="mono">4096 MB</span>
+              </span>
+            </div>
+            <div class="srow">
+              <span class="sk">深色主题</span>
+              <span class="sv"><span style="font-size:12px;color:var(--green)">已启用</span>
+                <button class="sw" type="button" role="switch" aria-checked="true" aria-label="深色主题"></button></span>
+            </div>
+            <div class="srow">
+              <span class="sk">启动前检测 Java</span>
+              <span class="sv">
+                <button class="sw" type="button" role="switch" aria-checked="true" aria-label="启动前检测 Java"></button></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-foot">
+        <div class="l-java">
+          <span class="dot" id="javaDot"></span>
+          <span><b>Java 21.0.2</b> <span id="javaText">已就绪</span></span>
+          <button class="l-link" id="javaBtn" type="button">重新检测</button>
+        </div>
+        <div class="l-prog" id="prog" role="progressbar" aria-label="启动进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progFill"></span></div>
+        <p class="l-status" id="lStatus" aria-live="polite"></p>
+        <button class="l-play" id="playBtn" type="button">
+          <span class="spin" aria-hidden="true"></span>
+          <span class="arrow" aria-hidden="true">▶</span>
+          <span id="playLabel">开始游戏</span>
+        </button>
+      </div>
+      <div class="l-toast" id="toast" role="status"><span class="ok">✓</span><span id="toastText">Minecraft 已启动</span></div>
+    </div>
+    <p class="demo-note">演示区为纯 HTML/CSS/JS 实现，不加载任何外部脚本、字体或图片；支持键盘操作（Tab 聚焦、方向键切换导航与下拉选项、Esc 关闭下拉）。</p>
   </section>
 
   <section id="download" class="wrap">
-    <div class="eyebrow">Download</div>
-    <h2>下载</h2>
-    <p class="lead">Windows 10/11 64 位，解压即用，内置运行时，不需要另行安装 Java。</p>
-    <div class="actions" style="justify-content:flex-start;margin-top:28px">
+    <div class="reveal">
+      <div class="eyebrow">Download</div>
+      <h2>下载</h2>
+      <p class="lead">Windows 10/11 64 位，解压即用，内置运行时，不需要另行安装 Java。</p>
+    </div>
+    <div class="actions" style="justify-content:flex-start;margin-top:32px">
       <a class="btn btn-main" href="https://github.com/yezi-fak/MCLQE/releases/latest/download/MCLQE-launcher-windows-x64.zip">↓ MCLQE-launcher-windows-x64.zip</a>
     </div>
-    <div class="dl">
+    <div class="dl reveal">
       <div class="dl-row"><span class="k">最新版本</span><span class="v" id="ver2">v1.0.0</span></div>
       <div class="dl-row"><span class="k">文件大小</span><span class="v">61.6 MB</span></div>
       <div class="dl-row"><span class="k">系统要求</span><span class="v">Windows 10 / 11 · 64 位 · 免装 Java</span></div>
@@ -249,29 +625,283 @@ footer .fnav a:hover{color:var(--green)}
 
 <script>
 (function(){
+  "use strict";
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 滚动揭示 ---------- */
+  var revealEls = [].slice.call(document.querySelectorAll(".reveal"));
+  if(!("IntersectionObserver" in window) || reduced){
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  }else{
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -6% 0px"});
+    revealEls.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i % 3, 2) * 70) + "ms";
+      io.observe(el);
+    });
+  }
+
+  /* ---------- 首屏截图轻微视差 ---------- */
+  var shot = document.getElementById("heroShot");
+  if(shot && !reduced){
+    var ticking = false;
+    var onScroll = function(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){
+        var y = window.pageYOffset || document.documentElement.scrollTop;
+        if(y < 1400){
+          shot.style.setProperty("--py", (Math.min(y, 700) * 0.055).toFixed(1) + "px");
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+  }
+
+  /* ---------- 标签面板切换 ---------- */
+  var tabs = [].slice.call(document.querySelectorAll(".l-tab"));
+  var panels = [].slice.call(document.querySelectorAll(".l-panel"));
+  function selectTab(idx, focus){
+    tabs.forEach(function(t, i){
+      var on = i === idx;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      panels[i].classList.toggle("is-active", on);
+    });
+    if(focus) tabs[idx].focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ selectTab(i, false); });
+    t.addEventListener("keydown", function(e){
+      var k = e.key, next = -1;
+      if(k === "ArrowDown" || k === "ArrowRight") next = (i + 1) % tabs.length;
+      else if(k === "ArrowUp" || k === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      else if(k === "Home") next = 0;
+      else if(k === "End") next = tabs.length - 1;
+      if(next > -1){ e.preventDefault(); selectTab(next, true); }
+    });
+  });
+
+  /* ---------- 版本下拉 ---------- */
+  var ddBtn = document.getElementById("ddBtn");
+  var ddList = document.getElementById("ddList");
+  var ddLabel = document.getElementById("ddLabel");
+  var ddOpts = [].slice.call(ddList.querySelectorAll('[role="option"]'));
+
+  function openDD(focusFirst){
+    ddList.classList.add("is-open");
+    ddBtn.setAttribute("aria-expanded", "true");
+    if(focusFirst){
+      var sel = ddOpts.filter(function(o){ return o.getAttribute("aria-selected") === "true"; })[0] || ddOpts[0];
+      sel.focus();
+    }
+  }
+  function closeDD(returnFocus){
+    ddList.classList.remove("is-open");
+    ddBtn.setAttribute("aria-expanded", "false");
+    if(returnFocus) ddBtn.focus();
+  }
+  ddBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(ddList.classList.contains("is-open")) closeDD(false);
+    else openDD(false);
+  });
+  ddBtn.addEventListener("keydown", function(e){
+    if(e.key === "ArrowDown" || e.key === "ArrowUp"){ e.preventDefault(); openDD(true); }
+  });
+  ddOpts.forEach(function(opt, i){
+    opt.addEventListener("click", function(e){
+      e.stopPropagation();
+      chooseVersion(opt.getAttribute("data-key"), opt.getAttribute("data-v"));
+      closeDD(true);
+    });
+    opt.addEventListener("keydown", function(e){
+      var k = e.key;
+      if(k === "ArrowDown"){ e.preventDefault(); ddOpts[(i + 1) % ddOpts.length].focus(); }
+      else if(k === "ArrowUp"){ e.preventDefault(); ddOpts[(i - 1 + ddOpts.length) % ddOpts.length].focus(); }
+      else if(k === "Home"){ e.preventDefault(); ddOpts[0].focus(); }
+      else if(k === "End"){ e.preventDefault(); ddOpts[ddOpts.length - 1].focus(); }
+      else if(k === "Escape"){ e.preventDefault(); closeDD(true); }
+      else if(k === "Tab"){ closeDD(false); }
+    });
+  });
+  document.addEventListener("click", function(e){
+    if(!ddList.contains(e.target) && e.target !== ddBtn && !ddBtn.contains(e.target)) closeDD(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && ddList.classList.contains("is-open")) closeDD(true);
+  });
+
+  /* ---------- 版本选择（下拉与列表联动） ---------- */
+  var vrows = [].slice.call(document.querySelectorAll(".vrow"));
+  var currentVersion = "1.20.1 · Fabric";
+  function chooseVersion(key, label){
+    currentVersion = label;
+    ddLabel.textContent = label;
+    ddBtn.setAttribute("aria-label", "选择游戏版本，当前 " + label);
+    ddOpts.forEach(function(o){ o.setAttribute("aria-selected", o.getAttribute("data-key") === key ? "true" : "false"); });
+    vrows.forEach(function(r){
+      var on = r.getAttribute("data-key") === key;
+      r.classList.toggle("is-sel", on);
+      r.setAttribute("aria-checked", on ? "true" : "false");
+      var tag = r.querySelector(".vls");
+      if(tag) tag.textContent = on ? "已选中" : "已安装";
+    });
+    var recent = document.getElementById("recentName");
+    if(recent) recent.textContent = label;
+  }
+  vrows.forEach(function(row){
+    row.addEventListener("click", function(){
+      chooseVersion(row.getAttribute("data-key"), row.getAttribute("data-v"));
+    });
+    row.addEventListener("keydown", function(e){
+      if(e.key === " " || e.key === "Enter"){ e.preventDefault(); row.click(); }
+    });
+  });
+
+  /* ---------- 模组开关 ---------- */
+  var modSwitches = [].slice.call(document.querySelectorAll('.mrow .sw'));
+  function refreshModCount(){
+    var on = modSwitches.filter(function(s){ return s.getAttribute("aria-checked") === "true"; }).length;
+    document.getElementById("statMods").textContent = on;
+    document.getElementById("recentMods").textContent = on + " 个模组已启用";
+  }
+  modSwitches.forEach(function(sw){
+    sw.addEventListener("click", function(){
+      sw.setAttribute("aria-checked", sw.getAttribute("aria-checked") === "true" ? "false" : "true");
+      refreshModCount();
+    });
+  });
+  [].slice.call(document.querySelectorAll('.srow .sw')).forEach(function(sw){
+    sw.addEventListener("click", function(){
+      sw.setAttribute("aria-checked", sw.getAttribute("aria-checked") === "true" ? "false" : "true");
+    });
+  });
+
+  /* ---------- 内存滑块 ---------- */
+  var memRange = document.getElementById("memRange");
+  if(memRange){
+    var syncMem = function(){
+      var v = parseInt(memRange.value, 10);
+      document.getElementById("memVal").textContent = v + " MB";
+      document.getElementById("statMem").textContent = v;
+      memRange.style.setProperty("--p", ((v - 1024) / (8192 - 1024) * 100) + "%");
+    };
+    memRange.addEventListener("input", syncMem);
+    syncMem();
+  }
+
+  /* ---------- Java 重新检测 ---------- */
+  var javaDot = document.getElementById("javaDot");
+  var javaText = document.getElementById("javaText");
+  var javaBtn = document.getElementById("javaBtn");
+  javaBtn.addEventListener("click", function(){
+    javaDot.classList.add("detecting");
+    javaText.textContent = "检测中…";
+    javaBtn.disabled = true;
+    setTimeout(function(){
+      javaDot.classList.remove("detecting");
+      javaText.textContent = "已就绪";
+      javaBtn.disabled = false;
+    }, 1100);
+  });
+
+  /* ---------- 开始游戏：进度推进 → 完成态 ---------- */
+  var playBtn = document.getElementById("playBtn");
+  var playLabel = document.getElementById("playLabel");
+  var prog = document.getElementById("prog");
+  var fill = document.getElementById("progFill");
+  var status = document.getElementById("lStatus");
+  var toast = document.getElementById("toast");
+  var toastText = document.getElementById("toastText");
+  var timers = [];
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  var busy = false;
+  var stopped = true;
+
+  var STAGES = [
+    {p:22, t:"正在检查 Java 运行时…"},
+    {p:46, t:"校验游戏资源文件…"},
+    {p:70, t:"加载模组…"},
+    {p:90, t:"准备 JVM 启动参数…"},
+    {p:100, t:"启动完成"}
+  ];
+
+  function setProgress(pct, text){
+    prog.setAttribute("aria-valuenow", pct);
+    fill.style.width = pct + "%";
+    if(text){ status.textContent = text; }
+  }
+
+  playBtn.addEventListener("click", function(){
+    if(busy) return;
+    busy = true;
+    stopped = false;
+    clearTimers();
+    toast.classList.remove("show");
+    playBtn.disabled = true;
+    playBtn.classList.add("is-busy");
+    playLabel.textContent = "启动中";
+    prog.classList.add("is-active");
+    status.classList.add("is-active");
+    setProgress(0, "正在准备启动 " + currentVersion + "…");
+
+    STAGES.forEach(function(st, i){
+      timers.push(setTimeout(function(){
+        setProgress(st.p, st.t);
+        if(st.p === 100){
+          finishLaunch();
+        }
+      }, 620 * (i + 1)));
+    });
+  });
+
+  function finishLaunch(){
+    busy = false;
+    stopped = true;
+    playBtn.disabled = false;
+    playBtn.classList.remove("is-busy");
+    playLabel.textContent = "再次启动";
+    status.textContent = "Minecraft " + currentVersion + " 已启动";
+    toastText.textContent = "Minecraft " + currentVersion + " 已启动 · 耗时 3.1s";
+    toast.classList.add("show");
+    timers.push(setTimeout(function(){ toast.classList.remove("show"); }, 4200));
+    timers.push(setTimeout(function(){
+      prog.classList.remove("is-active");
+      status.classList.remove("is-active");
+      setProgress(0, "");
+      playLabel.textContent = "开始游戏";
+    }, 5200));
+  }
+})();
+</script>
+
+<script>
+(function(){
   var REPO="yezi-fak/MCLQE";
+  function setText(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  if(!window.fetch) return;
   fetch("https://api.github.com/repos/"+REPO+"/releases/latest")
     .then(function(r){return r.ok?r.json():null})
     .then(function(d){
       if(!d) return;
-      if(d.tag_name){
-        document.getElementById("ver").textContent=d.tag_name;
-        document.getElementById("ver2").textContent=d.tag_name;
-      }
+      if(d.tag_name){ setText("ver",d.tag_name); setText("ver2",d.tag_name); }
       var n=0;
-      (d.assets||[]).forEach(function(a){n+=a.download_count||0});
-      document.getElementById("dlcount").textContent=n;
+      (d.assets||[]).forEach(function(a){ n += a.download_count||0; });
+      setText("dlcount",n);
     }).catch(function(){});
   fetch("https://api.github.com/repos/"+REPO)
     .then(function(r){return r.ok?r.json():null})
     .then(function(d){
       if(!d) return;
       var dl=document.getElementById("dlcount");
-      if(dl.textContent==="—"){
-        var total=(d.download_count||0);
-        dl.textContent=total;
-      }
-      document.getElementById("stars").textContent=d.stargazers_count||0;
+      if(dl && dl.textContent==="—") setText("dlcount", d.download_count||0);
+      setText("stars", d.stargazers_count||0);
     }).catch(function(){});
 })();
 </script>
